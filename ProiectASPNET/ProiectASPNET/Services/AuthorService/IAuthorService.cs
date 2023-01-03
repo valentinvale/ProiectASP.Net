@@ -1,6 +1,6 @@
 ﻿using ProiectASPNET.Models.DTOs;
 
-namespace ProiectASPNET.Services
+namespace ProiectASPNET.Services.AuthorService
 {
     public interface IAuthorService
     {

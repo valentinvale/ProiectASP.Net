@@ -1,7 +1,7 @@
 ﻿
 
 using ProiectASPNET.Repositories.AuthorRepository;
-using ProiectASPNET.Services;
+using ProiectASPNET.Services.AuthorService;
 
 namespace Lab4_13.Helpers.Extensions
 {

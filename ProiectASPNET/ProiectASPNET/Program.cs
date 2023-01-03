@@ -6,6 +6,9 @@ builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
+// Auto mapper
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
