@@ -1,0 +1,16 @@
+C:\Users\valus\Desktop\Uni\Anul 2\Semestrul 1\ASP.NET\Proiect\ProiectASP.Net\ProiectASPNET\DAL\obj\Debug\net6.0\DAL.csproj.AssemblyReference.cache
+C:\Users\valus\Desktop\Uni\Anul 2\Semestrul 1\ASP.NET\Proiect\ProiectASP.Net\ProiectASPNET\DAL\obj\Debug\net6.0\DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\valus\Desktop\Uni\Anul 2\Semestrul 1\ASP.NET\Proiect\ProiectASP.Net\ProiectASPNET\DAL\obj\Debug\net6.0\DAL.AssemblyInfoInputs.cache
+C:\Users\valus\Desktop\Uni\Anul 2\Semestrul 1\ASP.NET\Proiect\ProiectASP.Net\ProiectASPNET\DAL\obj\Debug\net6.0\DAL.AssemblyInfo.cs
+C:\Users\valus\Desktop\Uni\Anul 2\Semestrul 1\ASP.NET\Proiect\ProiectASP.Net\ProiectASPNET\DAL\obj\Debug\net6.0\DAL.csproj.CoreCompileInputs.cache
+C:\Users\valus\Desktop\Uni\Anul 2\Semestrul 1\ASP.NET\Proiect\ProiectASP.Net\ProiectASPNET\DAL\bin\Debug\net6.0\spa.proxy.json
+C:\Users\valus\Desktop\Uni\Anul 2\Semestrul 1\ASP.NET\Proiect\ProiectASP.Net\ProiectASPNET\DAL\bin\Debug\net6.0\DAL.deps.json
+C:\Users\valus\Desktop\Uni\Anul 2\Semestrul 1\ASP.NET\Proiect\ProiectASP.Net\ProiectASPNET\DAL\bin\Debug\net6.0\DAL.runtimeconfig.json
+C:\Users\valus\Desktop\Uni\Anul 2\Semestrul 1\ASP.NET\Proiect\ProiectASP.Net\ProiectASPNET\DAL\bin\Debug\net6.0\DAL.dll
+C:\Users\valus\Desktop\Uni\Anul 2\Semestrul 1\ASP.NET\Proiect\ProiectASP.Net\ProiectASPNET\DAL\bin\Debug\net6.0\DAL.pdb
+C:\Users\valus\Desktop\Uni\Anul 2\Semestrul 1\ASP.NET\Proiect\ProiectASP.Net\ProiectASPNET\DAL\obj\Debug\net6.0\spa.proxy.json
+C:\Users\valus\Desktop\Uni\Anul 2\Semestrul 1\ASP.NET\Proiect\ProiectASP.Net\ProiectASPNET\DAL\obj\Debug\net6.0\DAL.dll
+C:\Users\valus\Desktop\Uni\Anul 2\Semestrul 1\ASP.NET\Proiect\ProiectASP.Net\ProiectASPNET\DAL\obj\Debug\net6.0\refint\DAL.dll
+C:\Users\valus\Desktop\Uni\Anul 2\Semestrul 1\ASP.NET\Proiect\ProiectASP.Net\ProiectASPNET\DAL\obj\Debug\net6.0\DAL.pdb
+C:\Users\valus\Desktop\Uni\Anul 2\Semestrul 1\ASP.NET\Proiect\ProiectASP.Net\ProiectASPNET\DAL\obj\Debug\net6.0\DAL.genruntimeconfig.cache
+C:\Users\valus\Desktop\Uni\Anul 2\Semestrul 1\ASP.NET\Proiect\ProiectASP.Net\ProiectASPNET\DAL\obj\Debug\net6.0\ref\DAL.dll

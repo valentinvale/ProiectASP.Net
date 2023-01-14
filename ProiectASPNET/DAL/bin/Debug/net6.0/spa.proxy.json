@@ -1,0 +1,8 @@
+{
+"SpaProxyServer": {
+"ServerUrl": "",
+"LaunchCommand": "",
+"WorkingDirectory": "C:\\Users\\valus\\Desktop\\Uni\\Anul 2\\Semestrul 1\\ASP.NET\\Proiect\\ProiectASP.Net\\ProiectASPNET\\DAL",
+"MaxTimeoutInSeconds": "120"
+}
+}

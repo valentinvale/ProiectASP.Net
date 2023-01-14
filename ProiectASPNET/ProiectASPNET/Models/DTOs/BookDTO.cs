@@ -10,7 +10,6 @@
         public string Genre { get; set; }
         public virtual ICollection<AuthorInBook> AuthorsLink { get; set; }
         public virtual ICollection<Review>? Reviews { get; set; }
-        public decimal AverageRating { get; set; }
 
     }
 }
