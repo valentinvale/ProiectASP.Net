@@ -129,5 +129,8 @@
       }
     }
   },
-  "defaultProject": "ProiectASPNET"
+  "defaultProject": "ProiectASPNET",
+  "cli": {
+    "analytics": false
+  }
 }
