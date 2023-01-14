@@ -1,7 +1,9 @@
 ﻿
 
 using ProiectASPNET.Repositories.AuthorRepository;
+using ProiectASPNET.Repositories.BookRepository;
 using ProiectASPNET.Services.AuthorService;
+using ProiectASPNET.Services.BookService;
 
 namespace Lab4_13.Helpers.Extensions
 {
@@ -11,7 +13,8 @@ namespace Lab4_13.Helpers.Extensions
         {
             
             services.AddTransient<IAuthorRepository, AuthorRepository>();
-            
+            services.AddTransient<IBookRepository, BookRepository>();
+
 
             return services;
         }
@@ -19,6 +22,7 @@ namespace Lab4_13.Helpers.Extensions
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
             services.AddTransient<IAuthorService, AuthorService>();
+            services.AddTransient<IBookService, BookService>();
 
             return services;
         }
