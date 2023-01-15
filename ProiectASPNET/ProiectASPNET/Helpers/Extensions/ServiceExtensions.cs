@@ -2,8 +2,13 @@
 
 using ProiectASPNET.Repositories.AuthorRepository;
 using ProiectASPNET.Repositories.BookRepository;
+using ProiectASPNET.Repositories.QuoteRepository;
+using ProiectASPNET.Repositories.ReviewRepository;
 using ProiectASPNET.Services.AuthorService;
 using ProiectASPNET.Services.BookService;
+using ProiectASPNET.Services.QuoteService;
+using ProiectASPNET.Services.ReviewService;
+
 
 namespace Lab4_13.Helpers.Extensions
 {
@@ -14,6 +19,8 @@ namespace Lab4_13.Helpers.Extensions
             
             services.AddTransient<IAuthorRepository, AuthorRepository>();
             services.AddTransient<IBookRepository, BookRepository>();
+            services.AddTransient<IQuoteRepository, QuoteRepository>();
+            services.AddTransient<IReviewRepository, ReviewRepository>();
 
 
             return services;
@@ -23,6 +30,8 @@ namespace Lab4_13.Helpers.Extensions
         {
             services.AddTransient<IAuthorService, AuthorService>();
             services.AddTransient<IBookService, BookService>();
+            services.AddTransient<IQuoteService, QuoteService>();
+            services.AddTransient<IReviewService, ReviewService>();
 
             return services;
         }

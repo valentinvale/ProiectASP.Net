@@ -22,6 +22,9 @@ namespace ProiectASPNET.Helpers.Mapper
             CreateMap<CreateBookDTO, Book>();
             CreateMap<Book, CreateBookDTO>();
 
+            CreateMap<Review, CreateReviewDTO>();
+            CreateMap<CreateReviewDTO, Review>();
+
         }
     }
 }

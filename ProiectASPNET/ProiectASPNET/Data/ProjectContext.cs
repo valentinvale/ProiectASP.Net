@@ -29,11 +29,17 @@ namespace ProiectASPNET.Data
                 .WithMany(b => b.AuthorsLink)
                 .HasForeignKey(ab => ab.BookId);
 
+            // many to one
 
-            modelBuilder.Entity<Review>()
-                .HasOne(r => r.Book)
-                .WithMany(b => b.Reviews)
-                .HasForeignKey(r => r.BookId);
+            modelBuilder.Entity<Book>()
+                .HasMany(r => r.Reviews)
+                .WithOne(b => b.Book);
+                
+
+
+
+
+
 
             base.OnModelCreating(modelBuilder);
         }

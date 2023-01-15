@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ProiectASPNET.Models;
 using ProiectASPNET.Models.DTOs;
 using ProiectASPNET.Repositories.ReviewRepository;
 
@@ -22,7 +23,17 @@ namespace ProiectASPNET.Services.ReviewService
             return reviewsDTO;
         }
 
- 
+        public async Task<List<ReviewDTO>> CreateReviewAsync(CreateReviewDTO review)
+        {
+            var reviewEntity = _mapper.Map<Review>(review);
+            await _reviewRepository.CreateAsync(reviewEntity);
+            await _reviewRepository.SaveAsync();
+            var reviews = await _reviewRepository.GetAllAsync();
+            var reviewsDTO = _mapper.Map<List<ReviewDTO>>(reviews);
+            return reviewsDTO;
+        }
+
+
     }
 
 }

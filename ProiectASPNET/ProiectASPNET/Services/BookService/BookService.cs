@@ -18,7 +18,8 @@ namespace ProiectASPNET.Services.BookService
 
         public async Task<List<BookDTO>> GetAllBooks()
         {
-            var books = await _bookRepository.GetAllAsync();
+            var books = await _bookRepository.GetBooksWithReviewsAsync();
+            //var books = await _bookRepository.GetAllAsync();
             var booksDTO = _mapper.Map<List<BookDTO>>(books);
             return booksDTO;
         }

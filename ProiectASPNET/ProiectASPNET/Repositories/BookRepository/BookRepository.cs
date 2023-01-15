@@ -1,4 +1,5 @@
-﻿using ProiectASPNET.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using ProiectASPNET.Data;
 using ProiectASPNET.Models;
 using ProiectASPNET.Repositories.GenericRepository;
 
@@ -8,6 +9,11 @@ namespace ProiectASPNET.Repositories.BookRepository
     {
         public BookRepository(ProjectContext context) : base(context)
         {
+        }
+
+        public async Task<List<Book>> GetBooksWithReviewsAsync()
+        {
+            return await _table.Include(x => x.Reviews).ToListAsync();
         }
     }
 
