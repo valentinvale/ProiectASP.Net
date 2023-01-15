@@ -15,6 +15,11 @@ namespace ProiectASPNET.Repositories.BookRepository
         {
             return await _table.Include(x => x.Reviews).ToListAsync();
         }
+        
+        public async Task<List<Book>> GetAuthorsWithBooksAsync()
+        {
+            return await _table.Include(x => x.AuthorsLink).ThenInclude(x => x.Author).ToListAsync();
+        }
     }
 
 }

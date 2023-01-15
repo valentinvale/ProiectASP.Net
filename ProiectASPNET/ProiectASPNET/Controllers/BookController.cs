@@ -22,14 +22,23 @@ namespace ProiectASPNET.Controllers
 
         public async Task<IActionResult> GetAllBooks()
         {
-            return Ok(await _bookService.GetAllBooks());
+            // return Ok(await _bookService.GetAllBooks()); // cu review-uri
+            return Ok(await _bookService.GetAllBooksWithAuthors()); // cu autori, nu merge inca
         }
+
 
         [HttpPost]
         public async Task<IActionResult> PostBook([FromBody] CreateBookDTO book)
         {
             await _bookService.CreateBookAsync(book);
             return Ok(book);
+        }
+
+        [HttpPost ("{bookId}")]
+        public async Task<IActionResult> AddAuthorsToBook(Guid bookId, [FromBody] List<Guid> authorIds)
+        {
+            await _bookService.AddAuthorsToBook(bookId, authorIds);
+            return Ok();
         }
     }
 }

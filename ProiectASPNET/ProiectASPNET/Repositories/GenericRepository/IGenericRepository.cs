@@ -2,7 +2,7 @@
 
 namespace ProiectASPNET.Repositories.GenericRepository
 {
-    public interface IGenericRepository<TEntity> where TEntity : BaseEntity
+    public interface IGenericRepository<TEntity> where TEntity : class
     {
         // get all data
         Task<List<TEntity>> GetAllAsync();

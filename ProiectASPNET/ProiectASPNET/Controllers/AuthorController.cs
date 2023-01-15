@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ProiectASPNET.Models.DTOs;
 using ProiectASPNET.Services.AuthorService;
 
 namespace ProiectASPNET.Controllers
@@ -21,5 +22,14 @@ namespace ProiectASPNET.Controllers
             var authors = await _authorService.GetAllAuthors();
             return Ok(authors);
         }
+
+        [HttpPost]
+
+        public async Task<IActionResult> PostAuthor([FromBody] CreateAuthorDTO author)
+        {
+            await _authorService.CreateAuthorAsync(author);
+            return Ok(author);
+        }
+
     }
 }

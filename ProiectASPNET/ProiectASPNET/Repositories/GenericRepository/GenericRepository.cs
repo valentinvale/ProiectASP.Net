@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ProiectASPNET.Repositories.GenericRepository
 {
-    public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : BaseEntity
+    public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
     {
         protected readonly ProjectContext _context;
         protected readonly DbSet<TEntity> _table;
@@ -87,11 +87,11 @@ namespace ProiectASPNET.Repositories.GenericRepository
             return _table.Find(id);
 
             //another options
-            return _table.FirstOrDefault(x => x.Id.Equals(id));
-            return _table.Single(x => x.Id.Equals(id));
-            return _table.SingleOrDefault(x => x.Id.Equals(id));
-            return _table.Last(x => x.Id.Equals(id));
-            return _table.LastOrDefault(x => x.Id.Equals(id));
+            //return _table.FirstOrDefault(x => x.Id.Equals(id));
+           // return _table.Single(x => x.Id.Equals(id));
+            //return _table.SingleOrDefault(x => x.Id.Equals(id));
+            //return _table.Last(x => x.Id.Equals(id));
+            //return _table.LastOrDefault(x => x.Id.Equals(id));
         }
 
         public async Task<TEntity> FindByIdAsync(object id)
