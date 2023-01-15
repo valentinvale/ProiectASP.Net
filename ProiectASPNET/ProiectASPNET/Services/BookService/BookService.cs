@@ -27,6 +27,7 @@ namespace ProiectASPNET.Services.BookService
         {
             var bookEntity = _mapper.Map<Book>(book);
             await _bookRepository.CreateAsync(bookEntity);
+            await _bookRepository.SaveAsync();
             var books = await _bookRepository.GetAllAsync();
             var booksDTO = _mapper.Map<List<BookDTO>>(books);
             return booksDTO;
