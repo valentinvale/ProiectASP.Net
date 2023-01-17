@@ -25,6 +25,22 @@ namespace ProiectASPNET.Helpers.Mapper
             CreateMap<Review, CreateReviewDTO>();
             CreateMap<CreateReviewDTO, Review>();
 
+            CreateMap<Author, CreateAuthorDTO>();
+            CreateMap<CreateAuthorDTO, Author>();
+
+            
+            CreateMap<AuthorInBookDTO, Book>();
+            CreateMap<Book, AuthorInBookDTO>().ForMember(
+                dest => dest.Authors,
+                opt => opt.MapFrom(src => src.AuthorsLink.Select(x => x.Author))
+            );
+
+            CreateMap<AuthorAndReviewInBook, Book>();
+            CreateMap<Book, AuthorAndReviewInBook>().ForMember(
+                dest => dest.Authors,
+                opt => opt.MapFrom(src => src.AuthorsLink.Select(x => x.Author))
+            );
+
         }
     }
 }

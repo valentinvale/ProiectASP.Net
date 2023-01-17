@@ -1,5 +1,6 @@
 ﻿
 
+using ProiectASPNET.Repositories.AuthorInBookRepository;
 using ProiectASPNET.Repositories.AuthorRepository;
 using ProiectASPNET.Repositories.BookRepository;
 using ProiectASPNET.Repositories.QuoteRepository;
@@ -21,6 +22,7 @@ namespace Lab4_13.Helpers.Extensions
             services.AddTransient<IBookRepository, BookRepository>();
             services.AddTransient<IQuoteRepository, QuoteRepository>();
             services.AddTransient<IReviewRepository, ReviewRepository>();
+            services.AddTransient<IAuthorInBookRepository, AuthorInBookRepository>();
 
 
             return services;
