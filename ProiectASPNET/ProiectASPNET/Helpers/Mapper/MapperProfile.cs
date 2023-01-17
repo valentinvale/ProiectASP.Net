@@ -35,6 +35,12 @@ namespace ProiectASPNET.Helpers.Mapper
                 opt => opt.MapFrom(src => src.AuthorsLink.Select(x => x.Author))
             );
 
+            CreateMap<AuthorAndReviewInBook, Book>();
+            CreateMap<Book, AuthorAndReviewInBook>().ForMember(
+                dest => dest.Authors,
+                opt => opt.MapFrom(src => src.AuthorsLink.Select(x => x.Author))
+            );
+
         }
     }
 }

@@ -19,12 +19,26 @@ namespace ProiectASPNET.Controllers
         }
 
         [HttpGet]
-
         public async Task<IActionResult> GetAllBooks()
         {
-            // return Ok(await _bookService.GetAllBooks()); // cu review-uri
-            return Ok(await _bookService.GetAllBooksWithAuthors()); // cu autori, nu merge inca
+            var books = await _bookService.GetAllBooks();
+            return Ok(books);
         }
+
+
+        [HttpGet("getBooksWithAuthors")]
+
+        public async Task<IActionResult> GetAllBooksWithAuthors()
+        {
+            return Ok(await _bookService.GetAllBooksWithAuthors()); // cu autori
+        }
+
+        [HttpGet("getBooksWithReviews")]
+        public async Task<IActionResult> GetBooksWithReviews()
+        {
+            return Ok(await _bookService.GetAllBooksWithReviews()); // cu review-uri
+        }
+
 
 
         [HttpPost]
@@ -37,8 +51,8 @@ namespace ProiectASPNET.Controllers
         [HttpPost ("{bookId}")]
         public async Task<IActionResult> AddAuthorsToBook(Guid bookId, [FromBody] List<Guid> authorIds)
         {
-            await _bookService.AddAuthorsToBook(bookId, authorIds);
-            return Ok();
+            return Ok(await _bookService.AddAuthorsToBook(bookId, authorIds));
+            
         }
     }
 }
