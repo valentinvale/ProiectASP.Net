@@ -32,6 +32,18 @@ namespace ProiectASPNET.Services.AuthorService
             return authorsDTO;
         }
 
+        public async Task UpdateAuthorAsync(UpdateAuthorDTO author)
+        {
+            _authorRepository.Update(_mapper.Map<Author>(author));
+            await _authorRepository.SaveAsync();
+        }
+
+        public async Task DeleteAuthor(Guid authorId)
+        {
+            var author = await _authorRepository.FindByIdAsync(authorId);
+            _authorRepository.Delete(author);
+            await _authorRepository.SaveAsync();
+        }
 
     }
 

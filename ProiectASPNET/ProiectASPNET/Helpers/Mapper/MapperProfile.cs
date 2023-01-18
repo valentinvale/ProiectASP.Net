@@ -47,6 +47,9 @@ namespace ProiectASPNET.Helpers.Mapper
             CreateMap<Quote, CreateQuoteDTO>();
             CreateMap<CreateQuoteDTO, Quote>();
 
+            CreateMap<Author, UpdateAuthorDTO>();
+            CreateMap<UpdateAuthorDTO, Author>();
+
         }
     }
 }
