@@ -48,11 +48,11 @@ namespace ProiectASPNET.Controllers
             return Ok(book);
         }
 
-        [HttpPost ("{bookId}")]
+        [HttpPost("{bookId}")]
         public async Task<IActionResult> AddAuthorsToBook(Guid bookId, [FromBody] List<Guid> authorIds)
         {
             return Ok(await _bookService.AddAuthorsToBook(bookId, authorIds));
-            
+
         }
     }
 }

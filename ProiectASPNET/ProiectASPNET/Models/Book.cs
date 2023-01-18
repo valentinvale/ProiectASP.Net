@@ -15,6 +15,7 @@ namespace ProiectASPNET.Models
         public DateTime? DatePublishedOnSite { get; set; }
         public virtual ICollection<AuthorInBook> AuthorsLink { get; set; }
         public virtual ICollection<Review>? Reviews { get; set; }
+        public virtual ICollection<Quote>? Quotes { get; set; }
     }
-    
+
 }

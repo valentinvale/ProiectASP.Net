@@ -1,6 +1,6 @@
 ﻿namespace ProiectASPNET.Models.DTOs
 {
-    public class QuoteDTO
+    public class CreateQuoteDTO
     {
         public string Text { get; set; }
 

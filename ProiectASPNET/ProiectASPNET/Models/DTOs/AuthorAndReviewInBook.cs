@@ -1,4 +1,6 @@
-﻿namespace ProiectASPNET.Models.DTOs
+﻿using System.Collections;
+
+namespace ProiectASPNET.Models.DTOs
 {
     public class AuthorAndReviewInBook
     {
@@ -12,5 +14,7 @@
         public DateTime? DatePublished { get; set; }
         public ICollection<AuthorDTO> Authors { get; set; }
         public ICollection<ReviewDTO> Reviews { get; set; }
+
+        public ICollection<QuoteDTO> Quotes { get; set; }
     }
 }

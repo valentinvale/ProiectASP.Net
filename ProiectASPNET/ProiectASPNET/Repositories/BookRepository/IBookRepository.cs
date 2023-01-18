@@ -8,12 +8,12 @@ namespace ProiectASPNET.Repositories.BookRepository
         public Task<List<Book>> GetBooksWithReviewsAsync();
         public Task<List<Book>> GetAuthorsWithBooksAsync();
 
-        public Task<List<Book>> GetAuthorsAndReviewsWithBooksAsync();
+        public Task<List<Book>> GetAllWithBooksAsync();
     }
 
-    
-    
-        
-    
+
+
+
+
 
 }
