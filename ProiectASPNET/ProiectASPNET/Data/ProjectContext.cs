@@ -14,6 +14,8 @@ namespace ProiectASPNET.Data
         public DbSet<AuthorInBook> AuthorsInBooks { get; set; }
         public DbSet<Review> Reviews { get; set; }
 
+        public DbSet<Quote> Quotes { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<AuthorInBook>()
@@ -34,15 +36,14 @@ namespace ProiectASPNET.Data
             modelBuilder.Entity<Book>()
                 .HasMany(r => r.Reviews)
                 .WithOne(b => b.Book);
-                
 
-
-
-
+            modelBuilder.Entity<Book>()
+                .HasMany(q => q.Quotes)
+                .WithOne(b => b.Book);
 
 
             base.OnModelCreating(modelBuilder);
         }
-        
+
     }
 }

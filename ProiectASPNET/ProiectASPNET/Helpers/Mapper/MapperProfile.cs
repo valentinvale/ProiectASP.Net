@@ -4,7 +4,7 @@ using ProiectASPNET.Models.DTOs;
 
 namespace ProiectASPNET.Helpers.Mapper
 {
-    public class MapperProfile: Profile
+    public class MapperProfile : Profile
     {
         public MapperProfile()
         {
@@ -28,12 +28,24 @@ namespace ProiectASPNET.Helpers.Mapper
             CreateMap<Author, CreateAuthorDTO>();
             CreateMap<CreateAuthorDTO, Author>();
 
-            
+
             CreateMap<AuthorInBookDTO, Book>();
             CreateMap<Book, AuthorInBookDTO>().ForMember(
                 dest => dest.Authors,
                 opt => opt.MapFrom(src => src.AuthorsLink.Select(x => x.Author))
             );
+
+            CreateMap<AuthorAndReviewInBook, Book>();
+            CreateMap<Book, AuthorAndReviewInBook>().ForMember(
+                dest => dest.Authors,
+                opt => opt.MapFrom(src => src.AuthorsLink.Select(x => x.Author))
+            );
+
+            CreateMap<Quote, QuoteDTO>();
+            CreateMap<QuoteDTO, Quote>();
+
+            CreateMap<Quote, CreateQuoteDTO>();
+            CreateMap<CreateQuoteDTO, Quote>();
 
         }
     }

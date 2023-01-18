@@ -23,7 +23,7 @@ namespace ProiectASPNET.Services.BookService
             _mapper = mapper;
         }
 
-        public async Task<List<BookDTO>> GetAllBooks()
+        public async Task<List<BookDTO>> GetAllBooksWithReviews()
         {
             var books = await _bookRepository.GetBooksWithReviewsAsync();
             //var books = await _bookRepository.GetAllAsync();
@@ -31,10 +31,17 @@ namespace ProiectASPNET.Services.BookService
             return booksDTO;
         }
 
-        public async Task<List<BookDTO>> GetAllBooksWithAuthors()
+        public async Task<List<AuthorInBookDTO>> GetAllBooksWithAuthors()
         {
             var books = await _bookRepository.GetAuthorsWithBooksAsync();
-            var booksDTO = _mapper.Map<List<BookDTO>>(books);
+            var booksDTO = _mapper.Map<List<AuthorInBookDTO>>(books);
+            return booksDTO;
+        }
+
+        public async Task<List<AuthorAndReviewInBook>> GetAllBooks()
+        {
+            var books = await _bookRepository.GetAllWithBooksAsync();
+            var booksDTO = _mapper.Map<List<AuthorAndReviewInBook>>(books);
             return booksDTO;
         }
 

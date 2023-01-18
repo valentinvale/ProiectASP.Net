@@ -1,8 +1,8 @@
-﻿using ProiectASPNET.Models.Base;
+﻿using System.Collections;
 
-namespace ProiectASPNET.Models
+namespace ProiectASPNET.Models.DTOs
 {
-    public class Book : BaseEntity
+    public class AuthorAndReviewInBook
     {
         public string Title { get; set; }
         public string Description { get; set; }
@@ -12,10 +12,9 @@ namespace ProiectASPNET.Models
         public string Genre { get; set; }
         public int? NumberOfPages { get; set; }
         public DateTime? DatePublished { get; set; }
-        public DateTime? DatePublishedOnSite { get; set; }
-        public virtual ICollection<AuthorInBook> AuthorsLink { get; set; }
-        public virtual ICollection<Review>? Reviews { get; set; }
-        public virtual ICollection<Quote>? Quotes { get; set; }
-    }
+        public ICollection<AuthorDTO> Authors { get; set; }
+        public ICollection<ReviewDTO> Reviews { get; set; }
 
+        public ICollection<QuoteDTO> Quotes { get; set; }
+    }
 }
