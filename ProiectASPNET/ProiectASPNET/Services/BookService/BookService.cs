@@ -84,7 +84,9 @@ namespace ProiectASPNET.Services.BookService
             return _mapper.Map<List<AuthorInBookDTO>>(authorWithBook);
         }
 
-        public async Task UpdateBookAsync(UpdateBookDTO book)
+        // ar trebui si o functie de remove authors from book  
+
+            public async Task UpdateBookAsync(UpdateBookDTO book)
         {
             // aparent merge si pastreaza review-urile fara sa trebuiasca sa mai facem ceva in plus
             _bookRepository.Update(_mapper.Map<Book>(book));
