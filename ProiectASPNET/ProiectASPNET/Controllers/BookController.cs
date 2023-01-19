@@ -54,5 +54,20 @@ namespace ProiectASPNET.Controllers
             return Ok(await _bookService.AddAuthorsToBook(bookId, authorIds));
 
         }
+
+        [HttpPost("update")]
+        public async Task<IActionResult> UpdateBook([FromBody] UpdateBookDTO book)
+        {
+            await _bookService.UpdateBookAsync(book);
+            return Ok(book);
+        }
+
+        [HttpDelete("{bookId}")]
+
+        public async Task<IActionResult> DeleteBook([FromRoute] Guid bookId)
+        {
+            await this._bookService.DeleteBook(bookId);
+            return Ok(await _bookService.GetAllBooks());
+        }
     }
 }

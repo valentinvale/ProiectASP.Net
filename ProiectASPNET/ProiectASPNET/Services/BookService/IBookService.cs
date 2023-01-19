@@ -10,5 +10,9 @@ namespace ProiectASPNET.Services.BookService
         public Task<List<BookDTO>> GetAllBooksWithReviews();
         Task<List<BookDTO>> CreateBookAsync(CreateBookDTO book);
         public Task<List<AuthorInBookDTO>> AddAuthorsToBook(Guid bookId, List<Guid> authorIds);
+
+        Task UpdateBookAsync(UpdateBookDTO book);
+
+        Task DeleteBook(Guid bookId);
     }
 }

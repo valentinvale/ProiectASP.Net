@@ -4,6 +4,8 @@ using ProiectASPNET.Models.DTOs;
 using ProiectASPNET.Repositories.AuthorInBookRepository;
 using ProiectASPNET.Repositories.AuthorRepository;
 using ProiectASPNET.Repositories.BookRepository;
+using ProiectASPNET.Repositories.QuoteRepository;
+using ProiectASPNET.Repositories.ReviewRepository;
 
 namespace ProiectASPNET.Services.BookService
 {
@@ -12,14 +14,18 @@ namespace ProiectASPNET.Services.BookService
         public readonly IBookRepository _bookRepository;
         public readonly IAuthorRepository _authorRepository;
         private readonly IAuthorInBookRepository _authorInBookRepository;
+        public readonly IReviewRepository _reviewRepository;
+        public readonly IQuoteRepository _quoteRepository;
         public readonly IMapper _mapper;
         private object authorInBookRepository;
 
-        public BookService(IBookRepository bookRepository, IMapper mapper, IAuthorInBookRepository authorInBookRepository, IAuthorRepository authorRepository)
+        public BookService(IBookRepository bookRepository, IMapper mapper, IAuthorInBookRepository authorInBookRepository, IAuthorRepository authorRepository, IReviewRepository reviewRepository, IQuoteRepository quoteRepository)
         {
             _bookRepository = bookRepository;
             _authorRepository = authorRepository;
             _authorInBookRepository = authorInBookRepository;
+            _reviewRepository = reviewRepository;
+            _quoteRepository = quoteRepository;
             _mapper = mapper;
         }
 
@@ -78,7 +84,42 @@ namespace ProiectASPNET.Services.BookService
             return _mapper.Map<List<AuthorInBookDTO>>(authorWithBook);
         }
 
+        public async Task UpdateBookAsync(UpdateBookDTO book)
+        {
+            // aparent merge si pastreaza review-urile fara sa trebuiasca sa mai facem ceva in plus
+            _bookRepository.Update(_mapper.Map<Book>(book));
+            await _bookRepository.SaveAsync();
+        }
+
+        public async Task DeleteBook(Guid bookId)
+        {
+            var book = await _bookRepository.FindByIdAsync(bookId);
+            if(book != null)
+            {
+                var reviews = book.Reviews;
+                var quotes = book.Quotes;
+                // functioneaza nush dc
+                if(reviews != null)
+                    foreach (var review in reviews)
+                    {
+                        _reviewRepository.Delete(review);
+                    }
+
+                if (quotes != null)
+                    foreach (var quote in quotes)
+                    {
+                        _quoteRepository.Delete(quote);
+                    }
+
+                _bookRepository.Delete(book);
+                await _bookRepository.SaveAsync();
+            }
+            
+        }
+
     }
+
+    
 
 
 }
