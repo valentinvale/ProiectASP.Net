@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ProiectASPNET.Models;
 using ProiectASPNET.Models.DTOs;
+using ProiectASPNET.Repositories.BookRepository;
 using ProiectASPNET.Repositories.ReviewRepository;
 
 namespace ProiectASPNET.Services.ReviewService
@@ -8,11 +9,13 @@ namespace ProiectASPNET.Services.ReviewService
     public class ReviewService : IReviewService
     {
         public readonly IReviewRepository _reviewRepository;
+        public readonly IBookRepository _bookRepository;
         public readonly IMapper _mapper;
 
-        public ReviewService(IReviewRepository reviewRepository, IMapper mapper)
+        public ReviewService(IReviewRepository reviewRepository, IBookRepository bookRepository, IMapper mapper)
         {
             _reviewRepository = reviewRepository;
+            _bookRepository = bookRepository;
             _mapper = mapper;
         }
 
@@ -32,6 +35,22 @@ namespace ProiectASPNET.Services.ReviewService
             var reviewsDTO = _mapper.Map<List<ReviewDTO>>(reviews);
             return reviewsDTO;
         }
+
+        public async Task UpdateReviewAsync(Guid bookId, UpdateReviewDTO review)
+        {
+            var r = _mapper.Map<Review>(review);
+            r.Book = _bookRepository.FindByIdAsync(bookId).Result; // trebuie facut asta ca altfel da eroare
+            _reviewRepository.Update(r);
+            await _reviewRepository.SaveAsync();
+        }
+
+        public async Task DeleteReview(Guid reviewId)
+        {
+            var review = await _reviewRepository.FindByIdAsync(reviewId);
+            _reviewRepository.Delete(review);
+            await _reviewRepository.SaveAsync();
+
+        }    
 
 
     }

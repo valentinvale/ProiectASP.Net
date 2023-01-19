@@ -32,6 +32,20 @@ namespace ProiectASPNET.Controllers
             return Ok(review);
         }
 
+        [HttpPost("update/{bookId}")]
+        public async Task<IActionResult> UpdateReview([FromRoute] Guid bookId, [FromBody] UpdateReviewDTO review)
+        {
+            await _reviewService.UpdateReviewAsync(bookId, review);
+            return Ok(review);
+        }
+
+        [HttpDelete("{reviewId}")]
+        public async Task<IActionResult> DeleteReview([FromRoute] Guid reviewId)
+        {
+            await this._reviewService.DeleteReview(reviewId);
+            return Ok(await _reviewService.GetAllReviews());
+        }
+
 
     }
 }
