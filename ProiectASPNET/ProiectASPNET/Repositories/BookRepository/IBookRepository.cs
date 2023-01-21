@@ -9,6 +9,8 @@ namespace ProiectASPNET.Repositories.BookRepository
         public Task<List<Book>> GetAuthorsWithBooksAsync();
 
         public Task<List<Book>> GetAllWithBooksAsync();
+
+        Task<Book> GetBookByQuoteId(Guid quoteId);
     }
 
 

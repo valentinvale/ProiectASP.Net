@@ -9,5 +9,6 @@ namespace ProiectASPNET.Repositories.AuthorInBookRepository
         public AuthorInBookRepository(ProjectContext context) : base(context)
         {
         }
+
     }
 }

@@ -29,5 +29,19 @@ namespace ProiectASPNET.Controllers
             await _quoteService.CreateQuoteAsync(quote);
             return Ok(quote);
         }
+
+        [HttpPost("update/{bookId}")]
+        public async Task<IActionResult> UpdateQuote([FromRoute] Guid bookId, [FromBody] UpdateQuoteDTO quote)
+        {
+            await _quoteService.UpdateQuoteAsync(bookId, quote);
+            return Ok(quote);
+        }
+
+        [HttpDelete("{quoteId}")]
+        public async Task<IActionResult> DeleteQuote([FromRoute] Guid quoteId)
+        {
+            await this._quoteService.DeleteQuote(quoteId);
+            return Ok(await _quoteService.GetAllQuotes());
+        }
     }
 }
