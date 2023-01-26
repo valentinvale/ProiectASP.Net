@@ -22,6 +22,34 @@ namespace ProiectASPNET.Services.AuthorService
             return authorsDTO;
         }
 
+        public async Task<List<AuthorDTO>> GetAuthorsById(Guid authorId)
+        {
+            var authors = await _authorRepository.GetAuthorsById(authorId);
+            var authorsDTO = _mapper.Map<List<AuthorDTO>>(authors);
+            return authorsDTO;
+        }
+
+        public async Task<List<AuthorDTO>> GetAuthorsByName(string authorName)
+        {
+            var authors = await _authorRepository.GetAuthorsByName(authorName);
+            var authorsDTO = _mapper.Map<List<AuthorDTO>>(authors);
+            return authorsDTO;
+        }
+
+        public async Task<List<AuthorDTO>> GetAuthorsByBookId(Guid bookId)
+        {
+            var authors = await _authorRepository.GetAuthorsByBookId(bookId);
+            var authorsDTO = _mapper.Map<List<AuthorDTO>>(authors);
+            return authorsDTO;
+        }
+
+        public async Task<List<AuthorDTO>> GetAuthorsByBookName(string bookName)
+        {
+            var authors = await _authorRepository.GetAuthorsByBookName(bookName);
+            var authorsDTO = _mapper.Map<List<AuthorDTO>>(authors);
+            return authorsDTO;
+        }
+
         public async Task<List<AuthorDTO>> CreateAuthorAsync(CreateAuthorDTO author)
         {
             var authorEntity = _mapper.Map<Author>(author);
