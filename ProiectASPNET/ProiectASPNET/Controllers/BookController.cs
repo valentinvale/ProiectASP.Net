@@ -39,6 +39,12 @@ namespace ProiectASPNET.Controllers
             return Ok(await _bookService.GetAllBooksWithReviews()); // cu review-uri
         }
 
+        [HttpGet("getBooksByAuthorId/{authorId}")]
+        public async Task<IActionResult> GetBooksByAuthorId(Guid authorId)
+        {
+            return Ok(await _bookService.GetBooksByAuthorId(authorId));
+        }
+
 
 
         [HttpPost]
