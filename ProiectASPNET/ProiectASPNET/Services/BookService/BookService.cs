@@ -51,6 +51,48 @@ namespace ProiectASPNET.Services.BookService
             return booksDTO;
         }
 
+        public async Task<List<AuthorAndReviewInBook>> GetBooksByAuthorId(Guid authorId)
+        {
+            var books = await _bookRepository.GetBooksByAuthorId(authorId);
+            var booksDTO = _mapper.Map<List<AuthorAndReviewInBook>>(books);
+            return booksDTO;
+        }
+
+        public async Task<List<AuthorAndReviewInBook>> GetBooksByAuthorName(string authorName)
+        {
+            var books = await _bookRepository.GetBooksByAuthorName(authorName);
+            var booksDTO = _mapper.Map<List<AuthorAndReviewInBook>>(books);
+            return booksDTO;
+        }
+
+        public async Task<List<AuthorAndReviewInBook>> GetBookById(Guid bookId)
+        {
+            var books = await _bookRepository.GetBooksById(bookId);
+            var booksDTO = _mapper.Map<List<AuthorAndReviewInBook>>(books);
+            return booksDTO;
+        }
+
+        public async Task<List<AuthorAndReviewInBook>> GetBooksByTitle(string bookTitle)
+        {
+            var books = await _bookRepository.GetBooksByTitle(bookTitle);
+            var booksDTO = _mapper.Map<List<AuthorAndReviewInBook>>(books);
+            return booksDTO;
+        }
+
+        public async Task<List<AuthorAndReviewInBook>> GetBooksByGenre(string bookGenre)
+        {
+            var books = await _bookRepository.GetBooksByGenre(bookGenre);
+            var booksDTO = _mapper.Map<List<AuthorAndReviewInBook>>(books);
+            return booksDTO;
+        }
+
+        public async Task<List<AuthorAndReviewInBook>> GetBooksByISBN(string isbn)
+        {
+            var books = await _bookRepository.GetBooksByISBN(isbn);
+            var booksDTO = _mapper.Map<List<AuthorAndReviewInBook>>(books);
+            return booksDTO;
+        }
+
         public async Task<List<BookDTO>> CreateBookAsync(CreateBookDTO book)
         {
             var bookEntity = _mapper.Map<Book>(book);

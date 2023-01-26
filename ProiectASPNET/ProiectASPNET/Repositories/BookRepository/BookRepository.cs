@@ -27,10 +27,53 @@ namespace ProiectASPNET.Repositories.BookRepository
                 .Include(x => x.Reviews).Include(x => x.Quotes).ToListAsync();
         }
 
+        public async Task<List<Book>> GetBooksByAuthorId(Guid authorId)
+        {
+            return await _table.Include(x => x.AuthorsLink).ThenInclude(y => y.Author)
+                .Where(x => x.AuthorsLink.Any(y => y.AuthorId == authorId)).Include(x => x.Reviews)
+                .Include(x => x.Quotes).ToListAsync();
+        }
+
+        public async Task<List<Book>> GetBooksByAuthorName(string authorName)
+        {
+            return await _table.Include(x => x.AuthorsLink).ThenInclude(y => y.Author)
+                .Where(x => x.AuthorsLink.Any(y => y.Author.FirstName.Contains(authorName) || y.Author.LastName.Contains(authorName))).Include(x => x.Reviews)
+                .Include(x => x.Quotes).ToListAsync();
+        }
+
+        public async Task<List<Book>> GetBooksById(Guid bookId)
+        {
+            return await _table.Include(x => x.AuthorsLink).ThenInclude(y => y.Author)
+                .Where(x => x.Id == bookId).Include(x => x.Reviews)
+                .Include(x => x.Quotes).ToListAsync();
+        }
+
         public async Task<Book> GetBookByQuoteId(Guid quoteId)
         {
             return await _table.Include(x => x.Quotes).FirstOrDefaultAsync(x => x.Quotes.Any(y => y.Id == quoteId));
         }
+
+        public async Task<List<Book>> GetBooksByTitle(string bookTitle)
+        {
+            return await _table.Include(x => x.AuthorsLink).ThenInclude(y => y.Author)
+                .Where(x => x.Title.Contains(bookTitle)).Include(x => x.Reviews)
+                .Include(x => x.Quotes).ToListAsync();
+        }
+
+        public async Task<List<Book>> GetBooksByGenre(string bookGenre)
+        {
+            return await _table.Include(x => x.AuthorsLink).ThenInclude(y => y.Author)
+                .Where(x => x.Genre.ToLower() == bookGenre.ToLower()).Include(x => x.Reviews)
+                .Include(x => x.Quotes).ToListAsync();
+        }
+
+        public async Task<List<Book>> GetBooksByISBN(string isbn)
+        {
+            return await _table.Include(x => x.AuthorsLink).ThenInclude(y => y.Author)
+                .Where(x => x.ISBN.Contains(isbn)).Include(x => x.Reviews)
+                .Include(x => x.Quotes).ToListAsync();
+        }
+
     }
 
 }

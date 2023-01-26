@@ -39,7 +39,41 @@ namespace ProiectASPNET.Controllers
             return Ok(await _bookService.GetAllBooksWithReviews()); // cu review-uri
         }
 
+        [HttpGet("getBooksByAuthorId/{authorId}")]
+        public async Task<IActionResult> GetBooksByAuthorId(Guid authorId)
+        {
+            return Ok(await _bookService.GetBooksByAuthorId(authorId));
+        }
 
+        [HttpGet("getBooksByAuthorName/{authorName}")]
+        public async Task<IActionResult> GetBooksByAuthorName(string authorName)
+        {
+            return Ok(await _bookService.GetBooksByAuthorName(authorName));
+        }
+
+        [HttpGet("getBookById/{bookId}")]
+        public async Task<IActionResult> GetBookById(Guid bookId)
+        {
+            return Ok(await _bookService.GetBookById(bookId));
+        }
+
+        [HttpGet("getBookByTitle/{bookTitle}")]
+        public async Task<IActionResult> GetBookByTitle(string bookTitle)
+        {
+            return Ok(await _bookService.GetBooksByTitle(bookTitle));
+        }
+
+        [HttpGet("getBookByGenre/{bookGenre}")]
+        public async Task<IActionResult> GetBookByGenre(string bookGenre)
+        {
+            return Ok(await _bookService.GetBooksByGenre(bookGenre));
+        }
+
+        [HttpGet("getBookByISBN/{ISBN}")]
+        public async Task<IActionResult> GetBooksByISBN(string isbn)
+        {
+            return Ok(await _bookService.GetBooksByISBN(isbn));
+        }
 
         [HttpPost]
         public async Task<IActionResult> PostBook([FromBody] CreateBookDTO book)
@@ -48,7 +82,7 @@ namespace ProiectASPNET.Controllers
             return Ok(book);
         }
 
-        [HttpPost("{bookId}")]
+        [HttpPost("addAuthorsToBook/{bookId}")]
         public async Task<IActionResult> AddAuthorsToBook(Guid bookId, [FromBody] List<Guid> authorIds)
         {
             return Ok(await _bookService.AddAuthorsToBook(bookId, authorIds));
