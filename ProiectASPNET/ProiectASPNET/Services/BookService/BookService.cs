@@ -51,6 +51,13 @@ namespace ProiectASPNET.Services.BookService
             return booksDTO;
         }
 
+        public async Task<List<BookWithoutReviewsAndQuotesDTO>> GetAllBooksNoRQ()
+        {
+            var books = await _bookRepository.GetAllWithBooksNoRQ();
+            var booksDTO = _mapper.Map<List<BookWithoutReviewsAndQuotesDTO>>(books);
+            return booksDTO;
+        }
+
         public async Task<List<AuthorAndReviewInBook>> GetBooksByAuthorId(Guid authorId)
         {
             var books = await _bookRepository.GetBooksByAuthorId(authorId);

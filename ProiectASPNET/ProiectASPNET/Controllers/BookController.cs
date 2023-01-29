@@ -25,6 +25,14 @@ namespace ProiectASPNET.Controllers
             return Ok(books);
         }
 
+        // fara reviews & quotes, nu stiu daca e nevoie totusi
+        [HttpGet("NoRQ")]
+        public async Task<IActionResult> GetAllBooksNoRQ()
+        {
+            var books = await _bookService.GetAllBooksNoRQ();
+            return Ok(books);
+        }
+
 
         [HttpGet("getBooksWithAuthors")]
 
