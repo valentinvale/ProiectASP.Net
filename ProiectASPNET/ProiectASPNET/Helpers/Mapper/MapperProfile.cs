@@ -59,6 +59,12 @@ namespace ProiectASPNET.Helpers.Mapper
             CreateMap<Book, UpdateBookDTO>();
             CreateMap<UpdateBookDTO, Book>();
 
+            CreateMap<User, UserRequestDTO>();
+            CreateMap<UserRequestDTO, User>();
+
+            CreateMap<User, UserResponseDTO>();
+            CreateMap<UserResponseDTO, User>();
+
         }
     }
 }
