@@ -2,6 +2,7 @@ using Lab4_13.Helpers.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using ProiectASPNET.Data;
+using ProiectASPNET.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +29,7 @@ builder.Services.AddRepositories();
 builder.Services.AddServices();
 builder.Services.AddSeeders();
 builder.Services.AddUtils();
+builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
 
 var app = builder.Build();
 
