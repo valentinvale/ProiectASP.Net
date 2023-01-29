@@ -1,4 +1,5 @@
 ﻿using ProiectASPNET.Models.Base;
+using ProiectASPNET.Models.enums;
 using System.Text.Json.Serialization;
 
 namespace ProiectASPNET.Models
@@ -12,6 +13,8 @@ namespace ProiectASPNET.Models
         public string UserName { get; set; }
         [JsonIgnore]
         public string PasswordHash { get; set; }
+
+        public Role Role { get; set; }
 
     }
 }

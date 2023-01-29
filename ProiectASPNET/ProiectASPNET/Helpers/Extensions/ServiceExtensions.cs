@@ -1,5 +1,6 @@
 ﻿
 
+using ProiectASPNET.Helpers.JwtUtils;
 using ProiectASPNET.Repositories.AuthorInBookRepository;
 using ProiectASPNET.Repositories.AuthorRepository;
 using ProiectASPNET.Repositories.BookRepository;
@@ -45,6 +46,7 @@ namespace Lab4_13.Helpers.Extensions
 
         public static IServiceCollection AddUtils(this IServiceCollection services)
         {
+            services.AddScoped<IJwtUtils, JwtUtils>();
             return services;
         }
     }
