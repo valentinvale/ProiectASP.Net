@@ -13,8 +13,8 @@ namespace ProiectASPNET.Data
         public DbSet<Book> Books { get; set; }
         public DbSet<AuthorInBook> AuthorsInBooks { get; set; }
         public DbSet<Review> Reviews { get; set; }
-
         public DbSet<Quote> Quotes { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
