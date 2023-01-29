@@ -4,6 +4,7 @@ using Microsoft.OpenApi.Models;
 using ProiectASPNET.Data;
 using ProiectASPNET.Helpers;
 using ProiectASPNET.Helpers.Middleware;
+using ProiectASPNET.Services.UserService;
 
 var builder = WebApplication.CreateBuilder(args);
 
