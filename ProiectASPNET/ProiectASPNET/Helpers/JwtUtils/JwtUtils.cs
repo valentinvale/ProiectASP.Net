@@ -4,7 +4,7 @@ using ProiectASPNET.Models;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-namespace ProiectASPNET.Helpers.JwtToken
+namespace ProiectASPNET.Helpers.JwtUtils
 {
     public class JwtUtils : IJwtUtils
     {

@@ -1,6 +1,6 @@
 ﻿using ProiectASPNET.Models;
 
-namespace ProiectASPNET.Helpers.JwtToken
+namespace ProiectASPNET.Helpers.JwtUtils
 {
     public interface IJwtUtils
     {
