@@ -1,4 +1,5 @@
 ﻿using ProiectASPNET.Helpers.JwtUtils;
+using ProiectASPNET.Models;
 using ProiectASPNET.Models.DTOs;
 using ProiectASPNET.Repositories.UserRepository;
 using BCryptNet = BCrypt.Net.BCrypt;
@@ -27,14 +28,20 @@ namespace ProiectASPNET.Services.UserService
             return new UserResponseDTO(user, jwtToken);
         }
 
-        public Task Create(UserRequestDTO newUser)
+        public async Task Create(User newUser)
         {
-            throw new NotImplementedException();
+            await _userRepository.CreateAsync(newUser);
+            await _userRepository.SaveAsync();
         }
 
-        public UserRequestDTO GetById(Guid id)
+        public async Task<List<User>> GetAllUsers()
         {
-            throw new NotImplementedException();
+            return await _userRepository.GetAllAsync();
+        }
+
+        public User GetById(Guid id)
+        {
+            return _userRepository.FindById(id);
         }
     }
 }
