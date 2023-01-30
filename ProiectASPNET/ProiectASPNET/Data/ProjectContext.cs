@@ -16,6 +16,10 @@ namespace ProiectASPNET.Data
 
         public DbSet<Quote> Quotes { get; set; }
 
+        public DbSet<QuoteOfTheMonth> QuotesOfTheMonth { get; set; }
+
+        public DbSet<Leaderboard> Leaderboards { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<AuthorInBook>()
@@ -40,6 +44,18 @@ namespace ProiectASPNET.Data
             modelBuilder.Entity<Book>()
                 .HasMany(q => q.Quotes)
                 .WithOne(b => b.Book);
+
+            modelBuilder.Entity<QuoteOfTheMonth>()
+                .HasOne(q => q.Quote);
+
+
+            modelBuilder.Entity<Leaderboard>()
+                .HasOne(q => q.QuoteOfTheMonth)
+                .WithOne(l => l.Leaderboard)
+                .HasForeignKey<Leaderboard>(l => l.QuoteOfTheMonthId);
+
+
+
 
 
             base.OnModelCreating(modelBuilder);
