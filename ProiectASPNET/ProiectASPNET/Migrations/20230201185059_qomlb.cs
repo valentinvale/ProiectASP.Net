@@ -1,36 +1,15 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace ProiectASPNET.Migrations
 {
     /// <inheritdoc />
-    public partial class leaderboard : Migration
+    public partial class qomlb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "Leaderboards",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    QuoteOfTheMonthId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DateModified = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Leaderboards", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Leaderboards_QuotesOfTheMonth_QuoteOfTheMonthId",
-                        column: x => x.QuoteOfTheMonthId,
-                        principalTable: "QuotesOfTheMonth",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
 
             migrationBuilder.CreateTable(
                 name: "QuotesOfTheMonth",
@@ -55,15 +34,33 @@ namespace ProiectASPNET.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_QuotesOfTheMonth_LeaderboardId",
-                table: "QuotesOfTheMonth",
-                column: "LeaderboardId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
                 name: "IX_QuotesOfTheMonth_QuoteId",
                 table: "QuotesOfTheMonth",
                 column: "QuoteId");
+
+
+            migrationBuilder.CreateTable(
+               name: "Leaderboards",
+               columns: table => new
+               {
+                   Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                   Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                   QuoteOfTheMonthId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                   DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
+                   DateModified = table.Column<DateTime>(type: "datetime2", nullable: true)
+               },
+               constraints: table =>
+               {
+                   table.PrimaryKey("PK_Leaderboards", x => x.Id);
+                   table.ForeignKey(
+                       name: "FK_Leaderboards_QuotesOfTheMonth_QuoteOfTheMonthId",
+                       column: x => x.QuoteOfTheMonthId,
+                       principalTable: "QuotesOfTheMonth",
+                       principalColumn: "Id",
+                       onDelete: ReferentialAction.Cascade);
+               });
+
+            
         }
 
         /// <inheritdoc />

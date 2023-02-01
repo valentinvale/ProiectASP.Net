@@ -12,8 +12,8 @@ using ProiectASPNET.Data;
 namespace ProiectASPNET.Migrations
 {
     [DbContext(typeof(ProjectContext))]
-    [Migration("20230130145907_leaderboard3")]
-    partial class leaderboard3
+    [Migration("20230201190229_qomlb2")]
+    partial class qomlb2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

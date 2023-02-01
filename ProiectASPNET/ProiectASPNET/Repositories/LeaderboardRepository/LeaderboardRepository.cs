@@ -13,7 +13,18 @@ namespace ProiectASPNET.Repositories.LeaderboardRepository
 
         public async Task<List<Leaderboard>> GetLeaderboard()
         {
-            return await _table.Include(l => l.QuoteOfTheMonth).ToListAsync();
+            return await _table.Include(l => l.QuoteOfTheMonth).Select(l => new Leaderboard
+            {
+                Id = l.Id,
+                Name = l.Name,
+                QuoteOfTheMonth = new QuoteOfTheMonth
+                {
+                    Id = l.QuoteOfTheMonth.Id,
+                    Quote = l.QuoteOfTheMonth.Quote,
+                    Month = l.QuoteOfTheMonth.Month,
+                    Impressions = l.QuoteOfTheMonth.Impressions
+                }
+            }).ToListAsync();
         }
     }
     

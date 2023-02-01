@@ -5,7 +5,7 @@
 namespace ProiectASPNET.Migrations
 {
     /// <inheritdoc />
-    public partial class leaderboard2 : Migration
+    public partial class qomlb2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

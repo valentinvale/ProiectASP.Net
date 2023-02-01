@@ -2,7 +2,8 @@
 {
     public class QuoteOfTheMonthDTO
     {
-        public Quote Quote { get; set; }
+        public Guid Id { get; set; }
+        public QuoteDTO Quote { get; set; }
         public string Month { get; set; }
         public string Impressions { get; set; }
     }

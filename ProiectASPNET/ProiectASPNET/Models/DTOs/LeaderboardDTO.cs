@@ -4,6 +4,6 @@
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public QuoteOfTheMonth QuoteOfTheMonth { get; set; }
+        public QuoteOfTheMonthDTO QuoteOfTheMonth { get; set; }
     }
 }

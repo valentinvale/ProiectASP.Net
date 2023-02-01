@@ -49,9 +49,9 @@ namespace ProiectASPNET.Data
                 .HasOne(q => q.Quote);
 
 
-            modelBuilder.Entity<Leaderboard>()
-                .HasOne(q => q.QuoteOfTheMonth)
-                .WithOne(l => l.Leaderboard)
+            modelBuilder.Entity<QuoteOfTheMonth>()
+                .HasOne(l => l.Leaderboard)
+                .WithOne(q => q.QuoteOfTheMonth)
                 .HasForeignKey<Leaderboard>(l => l.QuoteOfTheMonthId);
 
 

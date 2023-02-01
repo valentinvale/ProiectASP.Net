@@ -12,8 +12,8 @@ using ProiectASPNET.Data;
 namespace ProiectASPNET.Migrations
 {
     [DbContext(typeof(ProjectContext))]
-    [Migration("20230130145228_leaderboard2")]
-    partial class leaderboard2
+    [Migration("20230201185059_qomlb")]
+    partial class qomlb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -135,7 +135,13 @@ namespace ProiectASPNET.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("QuoteOfTheMonthId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("QuoteOfTheMonthId")
+                        .IsUnique();
 
                     b.ToTable("Leaderboards");
                 });
@@ -189,9 +195,6 @@ namespace ProiectASPNET.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("LeaderboardId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Month")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -200,9 +203,6 @@ namespace ProiectASPNET.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("LeaderboardId")
-                        .IsUnique();
 
                     b.HasIndex("QuoteId");
 
@@ -263,6 +263,17 @@ namespace ProiectASPNET.Migrations
                     b.Navigation("Book");
                 });
 
+            modelBuilder.Entity("ProiectASPNET.Models.Leaderboard", b =>
+                {
+                    b.HasOne("ProiectASPNET.Models.QuoteOfTheMonth", "QuoteOfTheMonth")
+                        .WithOne("Leaderboard")
+                        .HasForeignKey("ProiectASPNET.Models.Leaderboard", "QuoteOfTheMonthId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("QuoteOfTheMonth");
+                });
+
             modelBuilder.Entity("ProiectASPNET.Models.Quote", b =>
                 {
                     b.HasOne("ProiectASPNET.Models.Book", "Book")
@@ -276,19 +287,11 @@ namespace ProiectASPNET.Migrations
 
             modelBuilder.Entity("ProiectASPNET.Models.QuoteOfTheMonth", b =>
                 {
-                    b.HasOne("ProiectASPNET.Models.Leaderboard", "Leaderboard")
-                        .WithOne("QuoteOfTheMonth")
-                        .HasForeignKey("ProiectASPNET.Models.QuoteOfTheMonth", "LeaderboardId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("ProiectASPNET.Models.Quote", "Quote")
                         .WithMany()
                         .HasForeignKey("QuoteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Leaderboard");
 
                     b.Navigation("Quote");
                 });
@@ -318,9 +321,9 @@ namespace ProiectASPNET.Migrations
                     b.Navigation("Reviews");
                 });
 
-            modelBuilder.Entity("ProiectASPNET.Models.Leaderboard", b =>
+            modelBuilder.Entity("ProiectASPNET.Models.QuoteOfTheMonth", b =>
                 {
-                    b.Navigation("QuoteOfTheMonth")
+                    b.Navigation("Leaderboard")
                         .IsRequired();
                 });
 #pragma warning restore 612, 618
