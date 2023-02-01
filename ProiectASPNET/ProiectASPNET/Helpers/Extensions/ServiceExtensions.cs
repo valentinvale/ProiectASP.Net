@@ -4,11 +4,15 @@ using ProiectASPNET.Helpers.JwtUtils;
 using ProiectASPNET.Repositories.AuthorInBookRepository;
 using ProiectASPNET.Repositories.AuthorRepository;
 using ProiectASPNET.Repositories.BookRepository;
+using ProiectASPNET.Repositories.LeaderboardRepository;
+using ProiectASPNET.Repositories.QuoteOfTheMonthRepository;
 using ProiectASPNET.Repositories.QuoteRepository;
 using ProiectASPNET.Repositories.ReviewRepository;
 using ProiectASPNET.Repositories.UserRepository;
 using ProiectASPNET.Services.AuthorService;
 using ProiectASPNET.Services.BookService;
+using ProiectASPNET.Services.LeaderboardService;
+using ProiectASPNET.Services.QuoteOfTheMonthService;
 using ProiectASPNET.Services.QuoteService;
 using ProiectASPNET.Services.ReviewService;
 using ProiectASPNET.Services.UserService;
@@ -25,6 +29,8 @@ namespace Lab4_13.Helpers.Extensions
             services.AddTransient<IQuoteRepository, QuoteRepository>();
             services.AddTransient<IReviewRepository, ReviewRepository>();
             services.AddTransient<IAuthorInBookRepository, AuthorInBookRepository>();
+            services.AddTransient<IQuoteOfTheMonthRepository, QuoteOfTheMonthRepository>();
+            services.AddTransient<ILeaderboardRepository, LeaderboardRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
 
 
@@ -37,6 +43,9 @@ namespace Lab4_13.Helpers.Extensions
             services.AddTransient<IBookService, BookService>();
             services.AddTransient<IQuoteService, QuoteService>();
             services.AddTransient<IReviewService, ReviewService>();
+            services.AddTransient<IQuoteOfTheMonthService, QuoteOfTheMonthService>();
+            services.AddTransient<ILeaderboardService, LeaderboardService>();
+
             services.AddTransient<IUserService, UserService>();
 
 

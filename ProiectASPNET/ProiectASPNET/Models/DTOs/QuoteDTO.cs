@@ -2,6 +2,7 @@
 {
     public class QuoteDTO
     {
+        public Guid Id { get; set; }
         public string Text { get; set; }
 
         public string Notes { get; set; }

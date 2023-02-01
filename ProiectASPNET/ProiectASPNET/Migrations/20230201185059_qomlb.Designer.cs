@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProiectASPNET.Data;
 
@@ -11,9 +12,11 @@ using ProiectASPNET.Data;
 namespace ProiectASPNET.Migrations
 {
     [DbContext(typeof(ProjectContext))]
-    partial class ProjectContextModelSnapshot : ModelSnapshot
+    [Migration("20230201185059_qomlb")]
+    partial class qomlb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -239,46 +242,6 @@ namespace ProiectASPNET.Migrations
                     b.HasIndex("BookId");
 
                     b.ToTable("Reviews");
-                });
-
-            modelBuilder.Entity("ProiectASPNET.Models.User", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("DateCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DateModified")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PasswordHash")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Role")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("ProiectASPNET.Models.AuthorInBook", b =>

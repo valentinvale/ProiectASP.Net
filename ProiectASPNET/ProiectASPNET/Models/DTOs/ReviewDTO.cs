@@ -2,6 +2,7 @@
 {
     public class ReviewDTO
     {
+        public Guid Id { get; set; }
         public string HeadLine { get; set; }
         public string? Text { get; set; }
         public int Rating { get; set; }
