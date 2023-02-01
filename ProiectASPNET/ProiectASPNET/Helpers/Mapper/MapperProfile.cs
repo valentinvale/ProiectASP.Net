@@ -59,6 +59,22 @@ namespace ProiectASPNET.Helpers.Mapper
             CreateMap<Book, UpdateBookDTO>();
             CreateMap<UpdateBookDTO, Book>();
 
+            CreateMap<Book, BookWithoutReviewsAndQuotesDTO>();
+            CreateMap<Book, BookWithoutReviewsAndQuotesDTO>
+                ().ForMember(
+                    dest => dest.Authors,
+                    opt => opt.MapFrom(src => src.AuthorsLink.Select(x => x.Author))
+                );
+
+            CreateMap<Leaderboard, LeaderboardDTO>();
+            CreateMap<LeaderboardDTO, Leaderboard>();
+            CreateMap<CreateLeaderboardDTO, Leaderboard>();
+            CreateMap<Leaderboard, CreateLeaderboardDTO>();
+
+            CreateMap<QuoteOfTheMonth, QuoteOfTheMonthDTO>();
+            CreateMap<QuoteOfTheMonthDTO, QuoteOfTheMonth>();
+            CreateMap<CreateQuoteOfTheMonthDTO, QuoteOfTheMonth>();
+            CreateMap<QuoteOfTheMonth, CreateQuoteOfTheMonthDTO>();
         }
     }
 }

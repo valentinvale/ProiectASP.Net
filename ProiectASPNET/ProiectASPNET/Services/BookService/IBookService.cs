@@ -5,7 +5,9 @@ namespace ProiectASPNET.Services.BookService
 {
     public interface IBookService
     {
-        Task<List<AuthorAndReviewInBook>> GetAllBooks();
+        public Task<List<AuthorAndReviewInBook>> GetAllBooks();
+
+        public Task<List<BookWithoutReviewsAndQuotesDTO>> GetAllBooksNoRQ();
         public Task<List<AuthorInBookDTO>> GetAllBooksWithAuthors();
         public Task<List<BookDTO>> GetAllBooksWithReviews();
         public Task<List<AuthorAndReviewInBook>> GetBooksByAuthorId(Guid authorId);
