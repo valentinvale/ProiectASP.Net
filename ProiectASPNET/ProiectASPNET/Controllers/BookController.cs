@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ProiectASPNET.Helpers.Attributes;
 using ProiectASPNET.Models;
 using ProiectASPNET.Models.DTOs;
+using ProiectASPNET.Models.enums;
 using ProiectASPNET.Repositories.BookRepository;
 using ProiectASPNET.Services.BookService;
 
@@ -11,6 +14,7 @@ namespace ProiectASPNET.Controllers
     [ApiController]
     public class BookController : ControllerBase
     {
+       
         public readonly IBookService _bookService;
 
         public BookController(IBookService bookService)
@@ -84,6 +88,7 @@ namespace ProiectASPNET.Controllers
         }
 
         [HttpPost]
+        //[Authorization(Role.Admin)]
         public async Task<IActionResult> PostBook([FromBody] CreateBookDTO book)
         {
             await _bookService.CreateBookAsync(book);
