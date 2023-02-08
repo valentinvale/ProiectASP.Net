@@ -1,0 +1,46 @@
+<app-navbar></app-navbar>
+<h1 id="title">
+    Cartea ta a întâlnit Cartea mea
+</h1>
+
+<br>
+
+<div id="welcome">
+    <p>
+        Bine ai venit pe site-ul nostru! Aici poți găsi carți recomandate de cititori din toată lumea, 
+        dar poți și recomanda cărți la rândul tău.
+    </p>
+    <p>
+        Ți-am pregătit câteva cărți și autori cu care să începi!
+    </p>
+</div>
+
+
+<div class="home_recs">
+    <ul>
+        <li 
+            *ngFor="let index of threeRandomNumbersBooks">
+             <img src="https://edit.org/photos/images/cat/book-covers-big-2019101610.jpg-1300.jpg" alt="Imaginea nu a putut fi încărcată" id="book_pic">
+             <p>{{books[index].title}}</p>
+             <p *ngFor="let author of books[index].authors">
+                {{author.fullName}}
+            </p>
+            <p>Editura: {{books[index].publisher}}</p>
+            <p>Gen: {{books[index].genre}}</p>
+            <p>Nr. pagini: {{books[index].numberOfPages}}</p>
+
+        </li>
+    </ul>
+</div>    
+
+<br>
+
+<div class="home_recs"> 
+    <ul>
+        <li *ngFor="let index of threeRandomNumbersAuthors">
+            <p>{{authors[index].fullName}}</p>
+            <p>Descriere: {{authors[index].description}}</p>
+        </li>
+    </ul>
+    
+</div>
