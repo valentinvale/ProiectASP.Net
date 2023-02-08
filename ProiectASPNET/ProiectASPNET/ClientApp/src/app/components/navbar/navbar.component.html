@@ -1,11 +1,29 @@
-<nav>
-    <ul>
-        <li>
-        <a routerLink="" routerLinkActive="active">Home</a>
-        </li>
-        <li>
-        <a routerLink="login" routerLinkActive="active">Login</a>
-        </li>
-        
-    </ul>
-</nav>
+<div id="topbar">
+
+        <h1 id="title">
+            Cartea ta a întâlnit Cartea mea
+        </h1>
+        <nav id="navbar">
+            <ul>
+                <li class="option">
+                    <a [routerLink]="['']" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">Home</a>
+                </li>
+                <li class="option">
+                    <a [routerLink]="['books']" routerLinkActive="active">Books</a>
+                </li>   
+                <li class="option">
+                    <a [routerLink]="['login']" routerLinkActive="active" >Login</a>
+                </li>
+                
+            </ul>
+        </nav>
+
+    
+
+</div>
+
+<br>
+
+<div>
+    <router-outlet></router-outlet>
+</div>
