@@ -1,9 +1,9 @@
-.books_books{
+.authors_authors{
     margin: 0 auto;
     width: 80%;
 }
 
-.books_books ul{
+.authors_authors ul{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 40px;
@@ -11,7 +11,7 @@
     
 }
 
-.books_books li:hover{
+.authors_authors li:hover{
     scale: 1.1;
     transition: 0.5s;
 }
@@ -27,12 +27,6 @@ li{
     font-weight: bold;
     display: inline-block;
     text-align: center;
-}
-
-#book_pic{
-    width: 60%;
-    height: 60%;
-    margin: 0 auto;
 }
 
 #subtitle{

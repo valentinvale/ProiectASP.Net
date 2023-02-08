@@ -1,0 +1,14 @@
+<br>
+<div id="subtitle">
+    <h2>Ce autori ne-au captivat in ultimul timp?</h2>
+</div>
+<br>
+<div class="authors_authors"> 
+    <ul>
+        <li *ngFor="let author of authors">
+            <p>{{author.fullName}}</p>
+            <p>Descriere: {{author.description}}</p>
+        </li>
+    </ul>
+    
+</div>

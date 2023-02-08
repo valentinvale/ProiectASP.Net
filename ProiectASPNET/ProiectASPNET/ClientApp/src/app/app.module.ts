@@ -9,6 +9,8 @@ import { HomeComponentComponent } from './components/home-component/home-compone
 import { LoginComponentComponent } from './components/login-component/login-component.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { BooksComponent } from './components/books/books.component';
+import { AuthorsComponent } from './components/authors/authors.component';
+import { LeaderboardComponent } from './components/leaderboard/leaderboard.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { BooksComponent } from './components/books/books.component';
     LoginComponentComponent,
     NavbarComponent,
     BooksComponent,
+    AuthorsComponent,
+    LeaderboardComponent,
     
   ],
   imports: [
@@ -27,6 +31,8 @@ import { BooksComponent } from './components/books/books.component';
       { path: '', component: HomeComponentComponent, pathMatch: 'full' },
       { path: 'login', component: LoginComponentComponent } ,
       { path: 'books', component: BooksComponent } , 
+      { path: 'authors', component: AuthorsComponent } ,
+      { path: 'leaderboard', component: LeaderboardComponent } ,
     ])
   ],
   providers: [],

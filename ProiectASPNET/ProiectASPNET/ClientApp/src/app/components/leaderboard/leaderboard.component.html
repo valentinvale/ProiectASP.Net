@@ -1,0 +1,10 @@
+<div id="leaderboard">
+    <h3>{{leaderboard[0].name}}</h3>
+    <p>"<i>{{leaderboard[0].quoteOfTheMonth.quote.text}}</i>"</p>
+    <p>Note personale: {{leaderboard[0].quoteOfTheMonth.quote.notes}}</p>
+    <div *ngFor="let book of books">
+        <p *ngIf="book.id == leaderboard[0].quoteOfTheMonth.quote.bookId">Titlul Cărții: "<i>{{book.title}}</i>"</p>
+    </div>
+    <p>Luna: {{leaderboard[0].quoteOfTheMonth.month}}</p>
+    <p>Impresii: {{leaderboard[0].quoteOfTheMonth.impressions}}</p>
+</div>
