@@ -6,7 +6,14 @@ using ProiectASPNET.Models.enums;
 using ProiectASPNET.Models;
 using ProiectASPNET.Services.UserService;
 using BCryptNet = BCrypt.Net.BCrypt;
-
+using Microsoft.EntityFrameworkCore;
+using ProiectASPNET.Data;
+using System.Security.Claims;
+using System.Net.Http;
+using Microsoft.Extensions.Primitives;
+using System.Linq;
+using Microsoft.AspNetCore.Identity;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace ProiectASPNET.Controllers.Users
 {
@@ -15,10 +22,12 @@ namespace ProiectASPNET.Controllers.Users
     public class UsersController : ControllerBase
     {
         private readonly IUserService _userService;
+        private readonly ProjectContext _context;
 
-        public UsersController(IUserService userService)
+        public UsersController(IUserService userService, ProjectContext context)
         {
             _userService = userService;
+            _context = context;
         }
 
         [HttpPost("create-user")]
@@ -33,7 +42,10 @@ namespace ProiectASPNET.Controllers.Users
                 Email = user.Email,
                 PasswordHash = BCryptNet.HashPassword(user.Password)
             };
-
+            if (await _context.Users.AnyAsync(x => x.UserName == userToCreate.UserName))
+            {
+                return BadRequest("User with the same username already exists");
+            }
             await _userService.Create(userToCreate);
             return Ok();
         }
@@ -50,7 +62,6 @@ namespace ProiectASPNET.Controllers.Users
                 Email = user.Email,
                 PasswordHash = BCryptNet.HashPassword(user.Password)
             };
-
             await _userService.Create(userToCreate);
             return Ok();
         }
@@ -63,7 +74,7 @@ namespace ProiectASPNET.Controllers.Users
             {
                 return BadRequest("Username or password is invalid!");
             }
-            return Ok();
+            return Ok(new { Token = response.Token });
         }
 
         [Authorization(Role.Admin)]

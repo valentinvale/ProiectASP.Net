@@ -20,7 +20,7 @@ namespace ProiectASPNET.Helpers.JwtUtils
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new System.Security.Claims.ClaimsIdentity(
+                Subject = new ClaimsIdentity(
                     new[] { new Claim("id", user.Id.ToString()) }
                     ),
                 Expires = DateTime.UtcNow.AddDays(10),
