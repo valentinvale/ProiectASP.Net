@@ -22,7 +22,12 @@ export class BooksComponent implements OnInit {
       console.log(this.books);
     });
     
+    
 
+  }
+
+  goToBook(id: number) {
+    this.bookService.goToBook(id);
   }
 
 }

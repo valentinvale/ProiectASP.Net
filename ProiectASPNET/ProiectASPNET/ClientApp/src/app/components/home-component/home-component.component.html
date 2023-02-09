@@ -23,6 +23,7 @@
             <p>Editura: {{books[index].publisher}}</p>
             <p>Gen: {{books[index].genre}}</p>
             <p>Nr. pagini: {{books[index].numberOfPages}}</p>
+            <button (click)="goToBook(books[index].id)">Link</button>
 
         </li>
     </ul>

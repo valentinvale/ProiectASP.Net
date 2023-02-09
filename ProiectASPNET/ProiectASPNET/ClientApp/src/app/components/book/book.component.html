@@ -1,0 +1,30 @@
+<div id="book">
+    <img src="https://edit.org/photos/images/cat/book-covers-big-2019101610.jpg-1300.jpg" alt="Imaginea nu a putut fi încărcată" id="book_pic">
+    <h3>{{book[0].title}}</h3>
+    <p *ngFor="let author of book[0].authors">
+    {{author.fullName}}
+    </p>
+    <p>Editura: {{book.publisher}}</p>
+    <p>Gen: {{book[0].genre}}</p>
+    <p>Nr. pagini: {{book[0].numberOfPages}}</p>
+    <h2>Reviews</h2>
+    <div id="reviews">
+        <ul>
+            <li *ngFor="let review of book[0].reviews">
+                <h4>{{review.headLine}}</h4>
+                <p>{{review.text}}</p>
+                <p>Rating: {{review.rating}}</p>
+            </li>
+        </ul>
+    </div>
+    <h2>Quotes</h2>
+    <div id="quotes">
+        <ul>
+            <li *ngFor="let quote of book[0].quotes">
+                <p>{{quote.text}}</p>
+                <p>Note personale: {{quote.notes}}</p>
+            </li>
+        </ul>
+    </div>
+
+</div>
