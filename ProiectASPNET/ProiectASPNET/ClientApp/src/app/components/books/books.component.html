@@ -6,7 +6,7 @@
 <div class="books_books">
     <ul>
         <li 
-            *ngFor="let book of books">
+            *ngFor="let book of books" >
              <img src="https://edit.org/photos/images/cat/book-covers-big-2019101610.jpg-1300.jpg" alt="Imaginea nu a putut fi încărcată" id="book_pic">
              <p>{{book.title}}</p>
              <p *ngFor="let author of book.authors">
@@ -15,6 +15,7 @@
             <p>Editura: {{book.publisher}}</p>
             <p>Gen: {{book.genre}}</p>
             <p>Nr. pagini: {{book.numberOfPages}}</p>
+            <button (click)="goToBook(book.id)">Link</button>
 
         </li>
     </ul>

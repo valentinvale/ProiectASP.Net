@@ -11,6 +11,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { BooksComponent } from './components/books/books.component';
 import { AuthorsComponent } from './components/authors/authors.component';
 import { LeaderboardComponent } from './components/leaderboard/leaderboard.component';
+import { BookComponent } from './components/book/book.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { LeaderboardComponent } from './components/leaderboard/leaderboard.compo
     BooksComponent,
     AuthorsComponent,
     LeaderboardComponent,
+    BookComponent,
     
   ],
   imports: [
@@ -33,6 +35,7 @@ import { LeaderboardComponent } from './components/leaderboard/leaderboard.compo
       { path: 'books', component: BooksComponent } , 
       { path: 'authors', component: AuthorsComponent } ,
       { path: 'leaderboard', component: LeaderboardComponent } ,
+      { path: 'book/:id', component: BookComponent},
     ])
   ],
   providers: [],

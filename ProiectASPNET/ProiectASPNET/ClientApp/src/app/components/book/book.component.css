@@ -1,0 +1,85 @@
+/* #book{
+    margin: 0 auto;
+    width: 80%;
+}
+
+#book ul{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 40px;
+    grid-template-rows: 1fr;
+    
+}
+
+#book li:hover{
+    scale: 1.1;
+    transition: 0.5s;
+}
+
+li{
+    list-style-type: none;
+    padding: 20px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: rgb(58, 58, 179);
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    display: inline-block;
+    text-align: center;
+} */
+
+#book{
+    margin: 0 auto;
+    width: 60%;
+    background-color: rgb(58, 58, 179);
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: aliceblue;
+}
+
+#review{
+    margin: 0 auto;
+    width: 60%;
+    background-color: rgb(58, 58, 179);
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: aliceblue;
+    text-decoration: none;
+}
+
+#review ul{
+    text-decoration: none;
+    text-align: left;
+    
+}
+
+li{
+    list-style-type: none;
+    padding: 20px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: rgb(123, 123, 215);
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    margin-top: 5px;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+
+
+#book_pic{
+    width: 40%;
+    height: 40%;
+    margin: 0 auto;
+}
