@@ -39,6 +39,10 @@ li{
     font-weight: bold;
     display: inline-block;
     text-align: center;
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+
 }
 
 #book_pic{
@@ -46,4 +50,7 @@ li{
     height: 60%;
     margin: 0 auto;
 }
+
+
+
     

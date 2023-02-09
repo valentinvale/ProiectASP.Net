@@ -43,6 +43,10 @@ export class HomeComponentComponent implements OnInit {
 
   }
 
+  goToBook(id: number) {
+    this.bookService.goToBook(id);
+  }
+
   
 
 }
