@@ -12,10 +12,24 @@
         <ul>
             <li *ngFor="let review of book[0].reviews">
                 <h4>{{review.headLine}}</h4>
-                <p>{{review.text}}</p>
+                <p>{{review.reviewText}}</p>
                 <p>Rating: {{review.rating}}</p>
             </li>
         </ul>
+        <div>
+          <h3>
+            Adauga un review
+          </h3>
+          <label for="addReviewTitle">Titlu review</label>
+          <input type="text" id="addReviewTitle" #reviewTitle>
+          <label for="addReview">Adauga review</label>
+          <textarea id="addReview" rows="4" cols="50" #reviewText></textarea>
+          <label for="addReviewRating">Rating</label>
+          <input type="range" id="addReviewRating" min="1" max="5" value="1" #reviewRating name="rating">
+          <button (click)="addReview(reviewTitle.value, reviewText.value, reviewRating.value)">Adauga</button>
+        </div>
+        
+        
     </div>
     <h2>Quotes</h2>
     <div id="quotes">
