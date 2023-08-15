@@ -15,6 +15,10 @@ import { ActivatedRoute } from '@angular/router';
 export class BookComponent implements OnInit {
 
   book: any;
+  reviewTitleValue: String = '';
+  reviewTextValue: String = '';
+  reviewRatingValue: String = '1';
+
 
   constructor(private readonly route: ActivatedRoute, private readonly bookService: BookService, private readonly reviewService: ReviewService) { }
 
@@ -28,17 +32,17 @@ export class BookComponent implements OnInit {
     });
   }
 
-  addReview(reviewTitleValue: String, reviewTextValue: String, reviewRatingValue: String): void {
+  addReview(): void {
     console.log('add review');
-    console.log(reviewTitleValue)
-    console.log(reviewTextValue)
-    console.log(reviewRatingValue)
+    console.log(this.reviewTitleValue)
+    console.log(this.reviewTextValue)
+    console.log(this.reviewRatingValue)
 
-    if (reviewRatingValue != '' && reviewTitleValue != '') {
+    if (this.reviewRatingValue != '' && this.reviewTitleValue != '') {
       const newReview = {
-        HeadLine: reviewTitleValue,
-        ReviewText: reviewTextValue,
-        Rating: Number(reviewRatingValue),
+        HeadLine: this.reviewTitleValue,
+        ReviewText: this.reviewTextValue,
+        Rating: Number(this.reviewRatingValue),
         BookId: this.book[0].id,
         UserId: this.book[0].id
 
@@ -49,9 +53,13 @@ export class BookComponent implements OnInit {
       this.reviewService.postReview(newReview).subscribe((data: any) => {
         console.log(data);
 
-        reviewTitleValue = '';
-        reviewTextValue = '';
-        reviewRatingValue = '';
+        this.book[0].reviews.push(data); // folosim book[0] pentru ca HTTPPOST intoarce un array cu un singur element :/
+
+        console.log(this.book);
+
+        this.reviewTitleValue = '';
+        this.reviewTextValue = '';
+        this.reviewRatingValue = '1';
 
       });
     }

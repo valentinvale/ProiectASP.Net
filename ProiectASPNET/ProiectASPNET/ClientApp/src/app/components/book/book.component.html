@@ -21,12 +21,12 @@
             Adauga un review
           </h3>
           <label for="addReviewTitle">Titlu review</label>
-          <input type="text" id="addReviewTitle" #reviewTitle>
+          <input type="text" id="addReviewTitle" [(ngModel)]="reviewTitleValue">
           <label for="addReview">Adauga review</label>
-          <textarea id="addReview" rows="4" cols="50" #reviewText></textarea>
+          <textarea id="addReview" rows="4" cols="50" [(ngModel)]="reviewTextValue"></textarea>
           <label for="addReviewRating">Rating</label>
-          <input type="range" id="addReviewRating" min="1" max="5" value="1" #reviewRating name="rating">
-          <button (click)="addReview(reviewTitle.value, reviewText.value, reviewRating.value)">Adauga</button>
+          <input type="range" id="addReviewRating" min="1" max="5" value="1" [(ngModel)]="reviewRatingValue" name="rating">
+          <button (click)="addReview()">Adauga</button>
         </div>
         
         
