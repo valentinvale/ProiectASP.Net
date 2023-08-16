@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { AuthorService } from 'src/app/services/author.service';
 import { BookService } from 'src/app/services/book.service';
 import { ReviewService } from 'src/app/services/review.service';
+import { QuoteService } from 'src/app/services/quote.service';
 import { ApiService } from 'src/app/services/api.service';
 import { ActivatedRoute } from '@angular/router';
 
@@ -18,9 +19,12 @@ export class BookComponent implements OnInit {
   reviewTitleValue: String = '';
   reviewTextValue: String = '';
   reviewRatingValue: String = '1';
+  quoteTextValue: String = '';
+  quoteNotesValue: String = '';
+  contentToAdd: String = 'review';
 
 
-  constructor(private readonly route: ActivatedRoute, private readonly bookService: BookService, private readonly reviewService: ReviewService) { }
+  constructor(private readonly route: ActivatedRoute, private readonly bookService: BookService, private readonly reviewService: ReviewService, private readonly quoteService: QuoteService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -33,10 +37,6 @@ export class BookComponent implements OnInit {
   }
 
   addReview(): void {
-    console.log('add review');
-    console.log(this.reviewTitleValue)
-    console.log(this.reviewTextValue)
-    console.log(this.reviewRatingValue)
 
     if (this.reviewRatingValue != '' && this.reviewTitleValue != '') {
       const newReview = {
@@ -67,10 +67,37 @@ export class BookComponent implements OnInit {
       console.log("Fields cannot be empty");
     }
 
-    
 
-    
+  }
 
+  addQuote(): void {
+
+    if (this.quoteTextValue != '') {
+      const newQuote = {
+        Text: this.quoteTextValue,
+        Notes: this.quoteNotesValue,
+        BookId: this.book[0].id,
+        UserId: this.book[0].id
+
+      }
+
+      console.log(newQuote);
+
+      this.quoteService.postQuote(newQuote).subscribe((data: any) => {
+        console.log(data);
+
+        this.book[0].quotes.push(data); // folosim book[0] pentru ca HTTPPOST intoarce un array cu un singur element :/
+
+        console.log(this.book);
+
+        this.quoteNotesValue = '';
+        this.quoteTextValue = '';
+
+      });
+    }
+    else {
+      console.log("Fields cannot be empty");
+    }
 
 
   }

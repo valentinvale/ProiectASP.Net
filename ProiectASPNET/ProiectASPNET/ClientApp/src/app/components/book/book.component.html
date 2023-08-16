@@ -7,8 +7,44 @@
     <p>Editura: {{book.publisher}}</p>
     <p>Gen: {{book[0].genre}}</p>
     <p>Nr. pagini: {{book[0].numberOfPages}}</p>
-    <h2>Reviews</h2>
+
+    <label for="chooseContentToAdd">Adauga</label>
+    <div id="chooseContentToAdd">
+      <input type="radio" class="contentToAddOption" id="contentToAddReview" value="review" [(ngModel)]="contentToAdd" checked="checked"><label for="contentToAddReview">Review</label>
+      <input type="radio" class="contentToAddOption" id="contentToAddQuote" value="quote" [(ngModel)]="contentToAdd"><label for="contentToAddQuote">Citat</label>
+    </div>
+
+    <div id="addContent">
+
+      <div *ngIf="contentToAdd === 'review'" id="addReview">
+        <h3>
+          Adauga un review
+        </h3>
+        <label for="addReviewTitle">Titlu review</label>
+        <input type="text" id="addReviewTitle" [(ngModel)]="reviewTitleValue">
+        <label for="addReview">Adauga review</label>
+        <textarea id="addReview" rows="4" cols="50" [(ngModel)]="reviewTextValue"></textarea>
+        <label for="addReviewRating">Rating</label>
+        <input type="range" id="addReviewRating" min="1" max="5" value="1" [(ngModel)]="reviewRatingValue" name="rating">
+        <button (click)="addReview()">Adauga</button>
+      </div>
+
+      <div *ngIf="contentToAdd === 'quote'" id="addReview">
+        <h3>
+          Adauga un citat
+        </h3>
+        <label for="addQuoteText">Citat</label>
+        <textarea id="addQuoteText" rows="4" cols="50" [(ngModel)]="quoteTextValue"></textarea>
+        <label for="addQuoteNotes">Adauga notite</label>
+        <textarea id="addReview" rows="4" cols="50" [(ngModel)]="quoteNotesValue"></textarea>
+        <button (click)="addQuote()">Adauga</button>
+      </div>
+
+    </div>
+    
+    
     <div id="reviews">
+        <h2>Reviews</h2>
         <ul>
             <li *ngFor="let review of book[0].reviews">
                 <h4>{{review.headLine}}</h4>
@@ -16,29 +52,17 @@
                 <p>Rating: {{review.rating}}</p>
             </li>
         </ul>
-        <div>
-          <h3>
-            Adauga un review
-          </h3>
-          <label for="addReviewTitle">Titlu review</label>
-          <input type="text" id="addReviewTitle" [(ngModel)]="reviewTitleValue">
-          <label for="addReview">Adauga review</label>
-          <textarea id="addReview" rows="4" cols="50" [(ngModel)]="reviewTextValue"></textarea>
-          <label for="addReviewRating">Rating</label>
-          <input type="range" id="addReviewRating" min="1" max="5" value="1" [(ngModel)]="reviewRatingValue" name="rating">
-          <button (click)="addReview()">Adauga</button>
-        </div>
-        
         
     </div>
-    <h2>Quotes</h2>
+    <h2>Citate</h2>
     <div id="quotes">
         <ul>
             <li *ngFor="let quote of book[0].quotes">
-                <p>{{quote.text}}</p>
-                <p>Note personale: {{quote.notes}}</p>
+                <p>"{{quote.text}}"</p>
+                <p *ngIf="quote.notes != ''">Note personale: {{quote.notes}}</p>
             </li>
         </ul>
     </div>
+
 
 </div>
