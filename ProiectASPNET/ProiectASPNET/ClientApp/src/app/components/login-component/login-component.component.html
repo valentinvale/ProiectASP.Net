@@ -1,1 +1,7 @@
-<p>login-component works!</p>
+<form id="loginForm">
+  <label for="username" id="usernameLogIn">Username</label>
+  <input type="text" id="username" name="username" required [(ngModel)]="usernameValue">
+  <label for="password" id="passwordLogIn">Password</label>
+  <input type="password" id="password" name="password" required [(ngModel)]="passwordValue">
+  <button type="submit" id="loginButton" (click)="login()">Log In</button>
+</form>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-navbar',
@@ -8,9 +9,18 @@ import { RouterModule } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
+  isLoggedIn: boolean = false;
+  username: String = '';
+
   constructor() { }
 
   ngOnInit(): void {
+    const token = localStorage.getItem('token');
+    if (token != null) {
+      this.isLoggedIn = true;
+      const decodedToken: any = jwt_decode(token);
+      this.username = decodedToken.username;
+    }
   }
 
 }

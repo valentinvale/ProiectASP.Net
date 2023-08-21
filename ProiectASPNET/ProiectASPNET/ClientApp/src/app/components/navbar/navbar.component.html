@@ -4,24 +4,30 @@
             Cartea ta a întâlnit Cartea mea
         </h1>
         <nav id="navbar">
-            <ul>
-                <li class="option">
-                    <a [routerLink]="['']" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">Home</a>
-                </li>
-                <li class="option">
-                    <a [routerLink]="['books']" routerLinkActive="active">Books</a>
-                </li>   
-                <li class="option">
-                    <a [routerLink]="['authors']" routerLinkActive="active">Authors</a>
-                </li>
-                <li class="option">
-                    <a [routerLink]="['leaderboard']" routerLinkActive="active">Leaderboard</a>
-                </li>
-                <li class="option">
-                    <a [routerLink]="['login']" routerLinkActive="active" >Login</a>
-                </li>
-                
-            </ul>
+          <ul>
+            <li class="option">
+              <a [routerLink]="['']" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">Home</a>
+            </li>
+            <li class="option">
+              <a [routerLink]="['books']" routerLinkActive="active">Books</a>
+            </li>
+            <li class="option">
+              <a [routerLink]="['authors']" routerLinkActive="active">Authors</a>
+            </li>
+            <li class="option">
+              <a [routerLink]="['leaderboard']" routerLinkActive="active">Leaderboard</a>
+            </li>
+            <li *ngIf="this.isLoggedIn == false" class="option">
+              <a [routerLink]="['login']" routerLinkActive="active">Log In</a>
+            </li>
+            <li *ngIf="this.isLoggedIn == true" class="option">
+              <a >{{this.username}}</a>
+            </li>
+            <li>
+              <a [routerLink]="['signup']" routerLinkActive="active">Sign Up</a>
+            </li>
+
+          </ul>
         </nav>
 
     

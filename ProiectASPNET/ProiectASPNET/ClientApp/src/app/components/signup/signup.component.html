@@ -1,0 +1,17 @@
+<form id="signupForm">
+
+  <label for="firstName" id="firstNameLabel">First Name</label>
+  <input type="text" id="firstName" name="firstName" required [(ngModel)]="signUpUser.firstName">
+  <label for="lastName" id="lastNameLabel">Last Name</label>
+  <input type="text" id="lastName" name="lastName" required [(ngModel)]="signUpUser.lastName">
+  <label for="username" id="usernameLabel">Username</label>
+  <input type="text" id="username" name="username" required [(ngModel)]="signUpUser.username">
+  <label for="email" id="emailLabel">Email</label>
+  <input type="email" id="email" name="email" required [(ngModel)]="signUpUser.email">
+  <label for="password" id="passwordLabel">Password</label>
+  <input type="password" id="password" name="password" required [(ngModel)]="signUpUser.password">
+  <label for="confirmPasswor" id="confirmPasswordLabel">Confirm Password</label>
+  <input type="password" id="confirmPassword" name="confirmPassword" required [(ngModel)]="signUpUser.confirmPassword">
+  <button type="submit" id="signupButton" (click)="signUp()">Sign Up</button>
+
+</form>
