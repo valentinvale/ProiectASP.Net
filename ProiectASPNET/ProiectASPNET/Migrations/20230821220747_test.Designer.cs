@@ -12,8 +12,8 @@ using ProiectASPNET.Data;
 namespace ProiectASPNET.Migrations
 {
     [DbContext(typeof(ProjectContext))]
-    [Migration("20230115015550_reviewupd")]
-    partial class reviewupd
+    [Migration("20230821220747_test")]
+    partial class test
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -119,6 +119,96 @@ namespace ProiectASPNET.Migrations
                     b.ToTable("Books");
                 });
 
+            modelBuilder.Entity("ProiectASPNET.Models.Leaderboard", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateModified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("QuoteOfTheMonthId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("QuoteOfTheMonthId")
+                        .IsUnique();
+
+                    b.ToTable("Leaderboards");
+                });
+
+            modelBuilder.Entity("ProiectASPNET.Models.Quote", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("BookId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateModified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Notes")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BookId");
+
+                    b.ToTable("Quotes");
+                });
+
+            modelBuilder.Entity("ProiectASPNET.Models.QuoteOfTheMonth", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateModified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Impressions")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Month")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("QuoteId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("QuoteId");
+
+                    b.ToTable("QuotesOfTheMonth");
+                });
+
             modelBuilder.Entity("ProiectASPNET.Models.Review", b =>
                 {
                     b.Property<Guid>("Id")
@@ -154,6 +244,46 @@ namespace ProiectASPNET.Migrations
                     b.ToTable("Reviews");
                 });
 
+            modelBuilder.Entity("ProiectASPNET.Models.User", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateModified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Role")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
+                });
+
             modelBuilder.Entity("ProiectASPNET.Models.AuthorInBook", b =>
                 {
                     b.HasOne("ProiectASPNET.Models.Author", "Author")
@@ -171,6 +301,39 @@ namespace ProiectASPNET.Migrations
                     b.Navigation("Author");
 
                     b.Navigation("Book");
+                });
+
+            modelBuilder.Entity("ProiectASPNET.Models.Leaderboard", b =>
+                {
+                    b.HasOne("ProiectASPNET.Models.QuoteOfTheMonth", "QuoteOfTheMonth")
+                        .WithOne("Leaderboard")
+                        .HasForeignKey("ProiectASPNET.Models.Leaderboard", "QuoteOfTheMonthId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("QuoteOfTheMonth");
+                });
+
+            modelBuilder.Entity("ProiectASPNET.Models.Quote", b =>
+                {
+                    b.HasOne("ProiectASPNET.Models.Book", "Book")
+                        .WithMany("Quotes")
+                        .HasForeignKey("BookId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Book");
+                });
+
+            modelBuilder.Entity("ProiectASPNET.Models.QuoteOfTheMonth", b =>
+                {
+                    b.HasOne("ProiectASPNET.Models.Quote", "Quote")
+                        .WithMany()
+                        .HasForeignKey("QuoteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Quote");
                 });
 
             modelBuilder.Entity("ProiectASPNET.Models.Review", b =>
@@ -193,7 +356,15 @@ namespace ProiectASPNET.Migrations
                 {
                     b.Navigation("AuthorsLink");
 
+                    b.Navigation("Quotes");
+
                     b.Navigation("Reviews");
+                });
+
+            modelBuilder.Entity("ProiectASPNET.Models.QuoteOfTheMonth", b =>
+                {
+                    b.Navigation("Leaderboard")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

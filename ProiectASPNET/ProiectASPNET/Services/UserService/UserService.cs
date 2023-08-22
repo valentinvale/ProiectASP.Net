@@ -16,7 +16,7 @@ namespace ProiectASPNET.Services.UserService
             _jwtUtils = jwtUtils;
         }
 
-        public UserResponseDTO Authenticate(UserRequestDTO model)
+        public UserResponseDTO Authenticate(UserLoginDTO model)
         {
             var user = _userRepository.FindByUsername(model.UserName);
             if (user == null || !BCryptNet.Verify(model.Password, user.PasswordHash))

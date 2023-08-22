@@ -21,7 +21,7 @@ namespace ProiectASPNET.Helpers.JwtUtils
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(
-                    new[] { new Claim("id", user.Id.ToString()) }
+                    new[] { new Claim("id", user.Id.ToString()), new Claim("username", user.UserName.ToString()) }
                     ),
                 Expires = DateTime.UtcNow.AddDays(10),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(appPrivateKey), SecurityAlgorithms.HmacSha256Signature)

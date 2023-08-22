@@ -8,13 +8,16 @@
     <p>Gen: {{book[0].genre}}</p>
     <p>Nr. pagini: {{book[0].numberOfPages}}</p>
 
-    <label for="chooseContentToAdd">Adauga</label>
-    <div id="chooseContentToAdd">
-      <input type="radio" class="contentToAddOption" id="contentToAddReview" value="review" [(ngModel)]="contentToAdd" checked="checked"><label for="contentToAddReview">Review</label>
-      <input type="radio" class="contentToAddOption" id="contentToAddQuote" value="quote" [(ngModel)]="contentToAdd"><label for="contentToAddQuote">Citat</label>
+    <div *ngIf="isLoggedIn" id="chooseContentDiv">
+      <label for="chooseContentToAdd">Adauga</label>
+      <div id="chooseContentToAdd">
+        <input type="radio" class="contentToAddOption" id="contentToAddReview" value="review" [(ngModel)]="contentToAdd" checked="checked"><label for="contentToAddReview">Review</label>
+        <input type="radio" class="contentToAddOption" id="contentToAddQuote" value="quote" [(ngModel)]="contentToAdd"><label for="contentToAddQuote">Citat</label>
+      </div>
     </div>
+    
 
-    <div id="addContent">
+    <div *ngIf="isLoggedIn" id="addContent">
 
       <div *ngIf="contentToAdd === 'review'" id="addReview">
         <h3>
@@ -41,12 +44,19 @@
       </div>
 
     </div>
+
+    <div *ngIf="!isLoggedIn" id="addContentNotLoggedIn">
+      <h3>
+        Autentifica-te pentru a adauga o recenzie sau un citat.
+      </h3>
+    </div>
     
     
     <div id="reviews">
         <h2>Reviews</h2>
         <ul>
             <li *ngFor="let review of book[0].reviews">
+                <h4>{{review.username}}</h4>
                 <h4>{{review.headLine}}</h4>
                 <p>{{review.reviewText}}</p>
                 <p>Rating: {{review.rating}}</p>
@@ -58,6 +68,7 @@
     <div id="quotes">
         <ul>
             <li *ngFor="let quote of book[0].quotes">
+                <h4>{{quote.username}}</h4>
                 <p>"{{quote.text}}"</p>
                 <p *ngIf="quote.notes != ''">Note personale: {{quote.notes}}</p>
             </li>

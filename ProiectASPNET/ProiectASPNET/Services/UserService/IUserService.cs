@@ -5,7 +5,7 @@ namespace ProiectASPNET.Services.UserService
 {
     public interface IUserService
     {
-        UserResponseDTO Authenticate(UserRequestDTO model);
+        UserResponseDTO Authenticate(UserLoginDTO model);
         User GetById(Guid id);
         Task<List<User>> GetAllUsers();
         Task Create(User newUser);

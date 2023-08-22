@@ -6,6 +6,8 @@
 
         public string Notes { get; set; }
 
+        public string Username { get; set; }
+
         public Guid UserId { get; set; }
 
         public Guid BookId { get; set; }

@@ -67,7 +67,7 @@ namespace ProiectASPNET.Controllers.Users
         }
 
         [HttpPost("authenticate")]
-        public async Task<IActionResult> Authenticate(UserRequestDTO user)
+        public async Task<IActionResult> Authenticate(UserLoginDTO user)
         {
             var response = _userService.Authenticate(user);
             if (response == null)
