@@ -13,6 +13,7 @@ import { AuthorsComponent } from './components/authors/authors.component';
 import { LeaderboardComponent } from './components/leaderboard/leaderboard.component';
 import { BookComponent } from './components/book/book.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,7 @@ import { SignupComponent } from './components/signup/signup.component';
       { path: 'signup', component: SignupComponent}
     ])
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -23,8 +23,11 @@
             <li *ngIf="this.isLoggedIn == true" class="option">
               <a >{{this.username}}</a>
             </li>
-            <li>
+            <li *ngIf="this.isLoggedIn == false">
               <a [routerLink]="['signup']" routerLinkActive="active">Sign Up</a>
+            </li>
+            <li *ngIf="this.isLoggedIn == true" class="option">
+              <a (click)="signOut()">Sign Out</a>
             </li>
 
           </ul>

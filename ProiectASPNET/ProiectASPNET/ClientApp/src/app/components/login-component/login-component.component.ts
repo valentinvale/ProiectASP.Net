@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
+import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-login-component',
@@ -10,10 +12,20 @@ export class LoginComponentComponent implements OnInit {
 
   usernameValue: String = '';
   passwordValue: String = '';
+  isLoggedIn: boolean = false;
 
-  constructor(private readonly userService: UserService) { }
+  constructor(private userService: UserService, private readonly router: Router) { }
 
   ngOnInit(): void {
+    const token = localStorage.getItem('token');
+    if (token != null) {
+      this.isLoggedIn = true;
+    }
+
+    if (this.isLoggedIn) {
+      this.router.navigate(['']);
+    }
+
   }
 
   login(): void {
@@ -26,11 +38,16 @@ export class LoginComponentComponent implements OnInit {
         console.log(data);
         if (data.token != null) {
           localStorage.setItem('token', data.token);
-          localStorage.setItem('username', data.username);
+          const token = data.token;
+          const decodedToken: any = jwt_decode(token);
+          localStorage.setItem('username', decodedToken.username);
           localStorage.setItem('role', data.role);
-          alert("Login successful!");
+          this.userService.setLoggedIn(true, decodedToken.username);
+          window.location.reload(); // las asa pana gasesc o varianta mai buna
+          //alert("Login successful!");
           this.passwordValue = '';
           this.usernameValue = '';
+          this.router.navigate(['']);
         } else {
           alert("Invalid credentials!");
         }
