@@ -4,7 +4,8 @@
     <p *ngFor="let author of book[0].authors">
     {{author.fullName}}
     </p>
-    <p>Editura: {{book.publisher}}</p>
+    <p>Rating: {{bookRating}}</p>
+    <p>Editura: {{book[0].publisher}}</p>
     <p>Gen: {{book[0].genre}}</p>
     <p>Nr. pagini: {{book[0].numberOfPages}}</p>
 

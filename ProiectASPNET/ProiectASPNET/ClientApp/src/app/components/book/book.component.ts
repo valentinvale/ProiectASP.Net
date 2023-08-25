@@ -19,6 +19,9 @@ import { User } from 'oidc-client';
 export class BookComponent implements OnInit {
 
   book: any;
+  bookRating: number = 0;
+  ratingSum: number = 0;
+numberOfRatings: number = 0;
   reviewTitleValue: String = '';
   reviewTextValue: String = '';
   reviewRatingValue: String = '1';
@@ -39,12 +42,21 @@ export class BookComponent implements OnInit {
       this.bookService.getBookById(id).subscribe(data => {
         this.book = data;
         console.log(this.book);
+        if (this.book[0].reviews.length > 0) {
+          this.ratingSum = 0;
+          this.numberOfRatings = this.book[0].reviews.length;
+          this.book[0].reviews.forEach((review: any) => {
+            this.ratingSum += review.rating;
+          });
+          this.bookRating = this.ratingSum / this.numberOfRatings;
+          this.bookRating = Math.round(this.bookRating * 10) / 10;
+        }
       });
     });
   }
 
   addReview(): void {
-
+    // TO DO: sa fac sa poata adauga doar un singur review per user
     if (this.isLoggedIn) {
       const token = localStorage.getItem('token');
       if (token != null) {
@@ -69,7 +81,10 @@ export class BookComponent implements OnInit {
           console.log(data);
 
           this.book[0].reviews.push(data); // folosim book[0] pentru ca HTTPPOST intoarce un array cu un singur element :/
-
+          this.numberOfRatings++;
+          this.ratingSum += data.rating;
+          this.bookRating = this.ratingSum / this.numberOfRatings;
+          this.bookRating = Math.round(this.bookRating * 10) / 10;
           console.log(this.book);
 
           this.reviewTitleValue = '';

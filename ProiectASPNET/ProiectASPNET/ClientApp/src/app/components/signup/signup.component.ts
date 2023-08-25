@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
+import { Router } from '@angular/router';
 
 interface SignUpUser {
   firstName: string,
@@ -30,7 +31,7 @@ export class SignupComponent implements OnInit {
     confirmPassword: ''
     }
 
-  constructor(private readonly userService: UserService) { }
+  constructor(private readonly userService: UserService, private readonly router: Router) { }
 
   ngOnInit(): void {
     
@@ -60,7 +61,8 @@ export class SignupComponent implements OnInit {
               password: '',
               email: '',
               confirmPassword: ''
-              }
+            }
+            this.router.navigate(['login']);
           });
         } else {
           alert("Passwords don't match!");
