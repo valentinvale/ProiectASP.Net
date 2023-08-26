@@ -26,6 +26,13 @@ namespace ProiectASPNET.Services.ReviewService
             return reviewsDTO;
         }
 
+        public async Task<ReviewDTO> GetReviewByUserAndBookId(Guid userId, Guid bookId)
+        {
+            var review = await _reviewRepository.GetReviewByUserAndBookId(userId, bookId);
+            var reviewDTO = _mapper.Map<ReviewDTO>(review);
+            return reviewDTO;
+        }
+
         public async Task<List<ReviewDTO>> CreateReviewAsync(CreateReviewDTO review)
         {
             var reviewEntity = _mapper.Map<Review>(review);

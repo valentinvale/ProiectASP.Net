@@ -12,6 +12,10 @@ export class ReviewService {
     getReviews(): Observable<any> {
       return this.apiService.get('Review');
     }
+
+    getReviewByUserAndBookId(userId: number, bookId: number): Observable<any> {
+      return this.apiService.get(`Review/${userId}/${bookId}`);
+    }
   
     postReview(review: any): Observable<any> {
       return this.apiService.post('Review', review);

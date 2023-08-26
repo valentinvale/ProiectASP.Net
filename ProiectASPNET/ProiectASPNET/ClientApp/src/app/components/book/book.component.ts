@@ -29,6 +29,7 @@ numberOfRatings: number = 0;
   quoteNotesValue: String = '';
   contentToAdd: String = 'review';
   isLoggedIn: Boolean = false;
+  userHasReviewed: Boolean = false;
 
 
   constructor(private readonly route: ActivatedRoute, private readonly bookService: BookService, private readonly reviewService: ReviewService, private readonly quoteService: QuoteService) { }
@@ -50,6 +51,16 @@ numberOfRatings: number = 0;
           });
           this.bookRating = this.ratingSum / this.numberOfRatings;
           this.bookRating = Math.round(this.bookRating * 10) / 10;
+        }
+        let token = localStorage.getItem('token');
+        if (token != null) {
+          let decodedToken: any = jwt_decode(token);
+          let userId = decodedToken.id;
+          this.reviewService.getReviewByUserAndBookId(userId, id).subscribe((data: any) => {
+            if (data != null) {
+              this.userHasReviewed = true;
+            }
+          })
         }
       });
     });
@@ -86,6 +97,7 @@ numberOfRatings: number = 0;
           this.bookRating = this.ratingSum / this.numberOfRatings;
           this.bookRating = Math.round(this.bookRating * 10) / 10;
           console.log(this.book);
+          this.userHasReviewed = true;
 
           this.reviewTitleValue = '';
           this.reviewTextValue = '';
@@ -97,7 +109,7 @@ numberOfRatings: number = 0;
         console.log("Fields cannot be empty");
       }
     }
-
+    console.log(this.userHasReviewed);
   }
 
   addQuote(): void {

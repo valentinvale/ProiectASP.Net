@@ -9,7 +9,7 @@
     <p>Gen: {{book[0].genre}}</p>
     <p>Nr. pagini: {{book[0].numberOfPages}}</p>
 
-    <div *ngIf="isLoggedIn" id="chooseContentDiv">
+    <div *ngIf="isLoggedIn && !userHasReviewed" id="chooseContentDiv">
       <label for="chooseContentToAdd">Adauga</label>
       <div id="chooseContentToAdd">
         <input type="radio" class="contentToAddOption" id="contentToAddReview" value="review" [(ngModel)]="contentToAdd" checked="checked"><label for="contentToAddReview">Review</label>
@@ -20,7 +20,7 @@
 
     <div *ngIf="isLoggedIn" id="addContent">
 
-      <div *ngIf="contentToAdd === 'review'" id="addReview">
+      <div *ngIf="contentToAdd === 'review' && !userHasReviewed" id="addReview">
         <h3>
           Adauga un review
         </h3>
@@ -33,7 +33,7 @@
         <button (click)="addReview()">Adauga</button>
       </div>
 
-      <div *ngIf="contentToAdd === 'quote'" id="addReview">
+      <div *ngIf="contentToAdd === 'quote' || userHasReviewed" id="addReview">
         <h3>
           Adauga un citat
         </h3>
