@@ -24,6 +24,13 @@ namespace ProiectASPNET.Controllers
             return Ok(reviews);
         }
 
+        [HttpGet("{reviewId}")]
+        public async Task<IActionResult> GetReviewById([FromRoute] Guid reviewId)
+        {
+            var review = await _reviewService.GetReviewById(reviewId);
+            return Ok(review);
+        }
+
         [HttpGet("{userId}/{bookId}")]
         public async Task<IActionResult> GetReviewByUserAndBookId([FromRoute] Guid userId, [FromRoute] Guid bookId)
         {

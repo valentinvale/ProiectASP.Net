@@ -21,7 +21,7 @@ export class BookComponent implements OnInit {
   book: any;
   bookRating: number = 0;
   ratingSum: number = 0;
-numberOfRatings: number = 0;
+  numberOfRatings: number = 0;
   reviewTitleValue: String = '';
   reviewTextValue: String = '';
   reviewRatingValue: String = '1';
@@ -30,6 +30,7 @@ numberOfRatings: number = 0;
   contentToAdd: String = 'review';
   isLoggedIn: Boolean = false;
   userHasReviewed: Boolean = false;
+  userId: any;
 
 
   constructor(private readonly route: ActivatedRoute, private readonly bookService: BookService, private readonly reviewService: ReviewService, private readonly quoteService: QuoteService) { }
@@ -56,6 +57,7 @@ numberOfRatings: number = 0;
         if (token != null) {
           let decodedToken: any = jwt_decode(token);
           let userId = decodedToken.id;
+          this.userId = userId;
           this.reviewService.getReviewByUserAndBookId(userId, id).subscribe((data: any) => {
             if (data != null) {
               this.userHasReviewed = true;
@@ -67,7 +69,6 @@ numberOfRatings: number = 0;
   }
 
   addReview(): void {
-    // TO DO: sa fac sa poata adauga doar un singur review per user
     if (this.isLoggedIn) {
       const token = localStorage.getItem('token');
       if (token != null) {
@@ -112,6 +113,23 @@ numberOfRatings: number = 0;
     console.log(this.userHasReviewed);
   }
 
+  deleteReview(reviewId: number): void {
+    // TO DO: make delete button work right after a review is posted
+    console.log("delete this review: " + reviewId);
+    this.reviewService.getReviewById(reviewId).subscribe((data: any) => {
+      console.log("deleted review: " + data)
+      this.numberOfRatings--;
+      this.ratingSum -= data.rating;
+      this.bookRating = this.ratingSum / this.numberOfRatings;
+      this.bookRating = Math.round(this.bookRating * 10) / 10;
+    });
+    this.reviewService.deleteReview(reviewId).subscribe((data: any) => {
+      console.log("review deleted");
+      this.book[0].reviews = this.book[0].reviews.filter((review: any) => review.id != reviewId);
+      this.userHasReviewed = false;
+    });
+  }
+
   addQuote(): void {
     if (this.isLoggedIn) {
       const token = localStorage.getItem('token');
@@ -152,4 +170,12 @@ numberOfRatings: number = 0;
     }
 
   }
+
+  deleteQuote(quoteId: number): void {
+    this.quoteService.deleteQuote(quoteId).subscribe((data: any) => {
+      console.log("quote deleted");
+      this.book[0].quotes = this.book[0].quotes.filter((quote: any) => quote.id != quoteId);
+    });
+  }
+
 }

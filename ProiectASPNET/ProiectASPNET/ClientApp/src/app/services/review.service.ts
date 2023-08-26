@@ -16,8 +16,17 @@ export class ReviewService {
     getReviewByUserAndBookId(userId: number, bookId: number): Observable<any> {
       return this.apiService.get(`Review/${userId}/${bookId}`);
     }
+
+    getReviewById(reviewId: number): Observable<any> {
+      return this.apiService.get(`Review/${reviewId}`);
+    }
   
     postReview(review: any): Observable<any> {
       return this.apiService.post('Review', review);
     }
+
+    deleteReview(reviewId: number): Observable<any> {
+      return this.apiService.delete(`Review/${reviewId}`);
+    }
+
 }

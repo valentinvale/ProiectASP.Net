@@ -16,5 +16,9 @@ export class QuoteService {
   postQuote(quote: any): Observable<any> {
     return this.apiService.post('Quote', quote);
   }
+
+  deleteQuote(quoteId: number): Observable<any> {
+    return this.apiService.delete(`Quote/${quoteId}`);
+  }
   
 }
