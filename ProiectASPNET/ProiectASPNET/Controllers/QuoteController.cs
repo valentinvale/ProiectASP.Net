@@ -26,8 +26,8 @@ namespace ProiectASPNET.Controllers
         [HttpPost]
         public async Task<IActionResult> PostQuote([FromBody] CreateQuoteDTO quote)
         {
-            await _quoteService.CreateQuoteAsync(quote);
-            return Ok(quote);
+            var newQuotes = await _quoteService.CreateQuoteAsync(quote);
+            return Ok(newQuotes);
         }
 
         [HttpPost("update/{bookId}")]

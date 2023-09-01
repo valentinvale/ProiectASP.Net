@@ -43,8 +43,8 @@ namespace ProiectASPNET.Controllers
         public async Task<IActionResult> PostReview([FromBody] CreateReviewDTO review)
         {
             Console.WriteLine(review);
-            await _reviewService.CreateReviewAsync(review);
-            return Ok(review);
+            var newReviews = await _reviewService.CreateReviewAsync(review);
+            return Ok(newReviews);
         }
 
         [HttpPost("update/{bookId}")]

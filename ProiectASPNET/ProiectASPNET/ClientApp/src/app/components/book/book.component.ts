@@ -92,9 +92,10 @@ export class BookComponent implements OnInit {
         this.reviewService.postReview(newReview).subscribe((data: any) => {
           console.log(data);
 
-          this.book[0].reviews.push(data); // folosim book[0] pentru ca HTTPPOST intoarce un array cu un singur element :/
+          this.book[0].reviews = data // folosim book[0] pentru ca HTTPPOST intoarce un array cu un singur element :/
+          console.log(this.book[0].reviews);
           this.numberOfRatings++;
-          this.ratingSum += data.rating;
+          this.ratingSum += newReview.Rating;
           this.bookRating = this.ratingSum / this.numberOfRatings;
           this.bookRating = Math.round(this.bookRating * 10) / 10;
           console.log(this.book);
@@ -153,7 +154,7 @@ export class BookComponent implements OnInit {
         this.quoteService.postQuote(newQuote).subscribe((data: any) => {
           console.log(data);
 
-          this.book[0].quotes.push(data); // folosim book[0] pentru ca HTTPPOST intoarce un array cu un singur element :/
+          this.book[0].quotes = data; // folosim book[0] pentru ca HTTPPOST intoarce un array cu un singur element :/
 
           console.log(this.book);
 
